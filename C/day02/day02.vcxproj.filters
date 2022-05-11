@@ -39,5 +39,20 @@
     <ClCompile Include="ex08.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="quiz01.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="quiz03.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="quiz02.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="quiz03_1.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="quiz04.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
