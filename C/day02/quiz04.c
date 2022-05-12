@@ -18,5 +18,19 @@ void main(void)
 	r_50 = (change - r_1000 * 1000 - r_500 * 500 - r_100 * 100) / 50;
 	r_10 = (change - r_1000 * 1000 - r_500 * 500 - r_100 * 100 - r_50 * 50) / 10;
 
+	/*
+	강사님 답
+	int total = 2530;
+	int money = 10000;
+
+	int change = money - total;
+	printf("거스름돈 : %d원\n", change);
+	printf("1000원 : %d개\n", change / 1000);
+	printf("500원 : %d개\n", change % 1000 / 500);
+	printf("100원 : %d개\n", change % 1000 % 500 / 100);
+	printf("50원 : %d개\n", change % 1000 % 500 % 100 / 50);
+	printf("10원 : %d개\n", change % 1000 % 500 % 100 % 50 / 10);
+	*/
+
 	printf("물건값 : %d원, 지불금액 : %d원, 거스름돈 : %d원 \n 1000원 : %d개, 500원 : %d개, 100원 : %d개, 50원 : %d개, 10원 : %d개", goods, money, change, r_1000, r_500, r_100, r_50, r_10);
 }
