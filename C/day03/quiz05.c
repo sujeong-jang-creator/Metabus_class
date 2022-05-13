@@ -71,6 +71,10 @@ void main(void)
 				second = c;
 			}
 		}
+		else
+		{
+			first = c;
+		}
 	}
 	printf("가장 큰 수는 %d \n두번째로 큰 수는 %d \n마지막 수는 %d 입니다.", first, second, third);
 }
