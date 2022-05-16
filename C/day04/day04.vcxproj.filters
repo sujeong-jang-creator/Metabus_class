@@ -36,6 +36,21 @@
     <ClCompile Include="quiz02.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="hw04.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="hw01.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="hw02.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="hw03.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="hw05.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
     <ClCompile Include="test.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
