@@ -15,28 +15,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="quiz01강사님풀이.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="quiz02강사님풀이.c">
+    <ClCompile Include="hw04_1.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="ex01.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ex02.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="ex03.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="quiz01.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ex02.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="quiz02.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="hw04.c">
+    <ClCompile Include="ex03.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="hw01.c">
@@ -46,9 +40,6 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="hw03.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="hw05.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
