@@ -45,7 +45,7 @@
     <ClCompile Include="quiz03.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="quiz04.c">
+    <ClCompile Include="hw01.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
