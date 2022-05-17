@@ -36,5 +36,5 @@ void main(void)
 	}
 	printf("5명 입력 중 [%d]번 오류 발생!!!\n", cnt);
 	printf("총합 %d점\n", total);
-	printf("평균 %.2f점\n", (float)total / 5);
+	printf("평균 %.2f점\n", (double)total / 5);
 }
