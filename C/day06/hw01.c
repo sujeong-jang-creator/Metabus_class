@@ -1,4 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
+//#define TRUE	1	// True 를 1이라고 할께요
+//#define FALSE	0	// False 를 0이라고 할께요 이런식으로 쓸 수 있음
+
 #include <stdio.h>
 
 int is_prime(int num)
