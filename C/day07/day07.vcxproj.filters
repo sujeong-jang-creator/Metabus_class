@@ -33,6 +33,15 @@
     <ClCompile Include="quiz01.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="ex06.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="quiz02.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="hw01.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="myheader.h">
