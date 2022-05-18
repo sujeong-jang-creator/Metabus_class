@@ -3,7 +3,7 @@
 #include "myheader.h"
 
 void is_error(int *p_score);
-char get_score(int score);
+char get_grade(int score);
 void print(int score, int grade);
 
 void main(void)
@@ -16,7 +16,7 @@ void main(void)
 	is_error(&score);
 
 	// 3. 학점매칭
-	int grade = get_score(score);
+	int grade = get_grade(score);
 
 	// 4. 출력
 	print(score, grade);
@@ -39,7 +39,7 @@ void is_error(int *p_score)
 }
 
 // 학점을 매칭
-char get_score(int score)
+char get_grade(int score)
 {
 	char grade;
 
