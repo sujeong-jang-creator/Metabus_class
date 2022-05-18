@@ -12,7 +12,7 @@ void main(void)
 	printf("성적 : ");
 	int score = scan_int();
 
-	// 2. 올바르게 입력했는지 확인
+	// 2. 올바르게 입력했는지 확인/입력
 	is_error(&score);
 
 	// 3. 학점매칭
@@ -22,7 +22,7 @@ void main(void)
 	print(score, grade);
 }
 
-// 성적을 올바르게 입력했는지 확인
+// 성적을 올바르게 입력했는지 확인 및 올바른 성적 입력
 void is_error(int *p_score)
 {
 	int score;
