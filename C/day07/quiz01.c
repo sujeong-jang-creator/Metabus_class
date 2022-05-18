@@ -16,7 +16,7 @@ void main(void)
 	is_error(&score);
 
 	// 3. 학점매칭
-	int grade = get_grade(score);
+	char grade = get_grade(score);
 
 	// 4. 출력
 	print(score, grade);
