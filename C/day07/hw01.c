@@ -46,12 +46,12 @@ void main(void)
 	{
 		num = input_num(min, max);
 		inspect_rlt(quiz, &num, &min, &max);
-		if (quiz != num)
+		if (cnt < 6 && quiz != num)
 		{
 		printf("기회는 %d번 남았습니다.\n", 6 - cnt);
 		}
 		cnt++;
-		if (cnt > 6)
+		if (cnt > 6 && quiz != num)
 		{
 			printf("아쉽습니다. 기회를 다 소진하셨습니다.\n");
 			printf("정답은 [%d] 입니다. \n", quiz);
