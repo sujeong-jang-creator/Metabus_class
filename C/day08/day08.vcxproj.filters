@@ -21,9 +21,6 @@
     <ClCompile Include="ex01.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="숫자야구사본.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="myheader.h">

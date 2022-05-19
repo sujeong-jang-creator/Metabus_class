@@ -11,7 +11,7 @@ void main(void)
 	// 1. 중복되지 않는 랜덤한 숫자 3개를 출력
 	int ran[3];
 	random_num(ran);
-	printf("정답 : %d %d %d\n", ran[0], ran[1], ran[2]);
+	//printf("정답 : %d %d %d\n", ran[0], ran[1], ran[2]);
 
 	int m_strike = 0, m_ball = 0;
 	int cnt = 0;
@@ -60,9 +60,6 @@ void scoring_ans(int* ran, int* num, int *m_strike, int *m_ball)
 	}
 	*m_strike = strike;
 	*m_ball = ball;
-
-	//printf("%d strike / %d ball 입니다.\n", strike, ball - strike);
-	//printf("기회는 %d번 남았습니다.\n", 6 - cnt);
 }
 
 // 한 자리수 숫자 3개 입력받음
