@@ -11,7 +11,7 @@ void main(void)
 	// 1. 중복되지 않는 랜덤한 숫자 3개를 출력
 	int ran[3];
 	random_num(ran);
-	printf("정답 : %d %d %d\n", ran[0], ran[1], ran[2]);
+	//printf("정답 : %d %d %d\n", ran[0], ran[1], ran[2]);
 
 	int m_strike = 0, m_ball = 0;
 	int cnt = 0;
