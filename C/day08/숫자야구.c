@@ -11,10 +11,15 @@ void main(void)
 	// 1. 중복되지 않는 랜덤한 숫자 3개를 출력
 	int ran[3];
 	random_num(ran);
-	//printf("정답 : %d %d %d\n", ran[0], ran[1], ran[2]);
+	printf("정답 : %d %d %d\n", ran[0], ran[1], ran[2]);
 
 	int m_strike = 0, m_ball = 0;
 	int cnt = 0;
+	int max_cnt;
+
+	// 몇 번 시도하고 싶은지 질문
+	printf(" 몇 번 시도해 보실건가요? : ");
+	scanf("%d", &max_cnt);
 	do
 	{
 		// 2. 한 자리수 숫자를 입력받음
@@ -28,13 +33,17 @@ void main(void)
 		if (m_strike != 3)
 		{
 			printf("%d strike / %d ball 입니다.\n", m_strike, m_ball - m_strike);
-			printf("기회는 %d번 남았습니다.\n", 6 - cnt);
+			printf("기회는 %d번 남았습니다.\n", max_cnt - cnt);
 		}
 		else
 		{
 		printf(" ***** 정답입니다 *****\n");
 		}
-	} while (m_strike != 3 && cnt < 6);
+	} while (m_strike != 3 && cnt < max_cnt);
+	if (cnt >= max_cnt)
+	{
+		printf("게임이 종료되었습니다. 정답은 %d %d %d 입니다.\n", ran[0], ran[1], ran[2]);
+	}
 }
 
 // 입력한 숫자가 답과 같은지 채점 후 시도 횟수 추가
