@@ -13,7 +13,7 @@
 int numcmp(const char*, const char*);	// 함수 numcmp 선언
 //void fcmp(int (**p)(const char*, const char*), char*, char*);	// 함수 fcmp 선언
 // 위 주석처럼 써도 되고, 여기서 만큼은 (**p) 생략해도 가능하다. 밑에 처럼.
-void fcmp(int (const char*, const char*), char*, char*);	// 함수 fcmp 선언
+void fcmp(int (**)(const char*, const char*), char*, char*);	// 함수 fcmp 선언
 
 int main(void)
 {
