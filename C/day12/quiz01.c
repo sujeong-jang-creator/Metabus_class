@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+ #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -11,7 +11,6 @@ struct node {
 	// link는 node 구조체의 다른 노드의 주소
 };
 
-// 
 int getname(char*);
 struct node* addlist(struct node*, char*);
 char* namecopy(char*);
