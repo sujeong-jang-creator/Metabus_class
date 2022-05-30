@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이력서</title>
+
+    <style>
+        table {
+        border-collapse: collapse;
+        width: 50%;
+        margin-left:auto; 
+        margin-right:auto;
+        }
+  
+        td {
+            border: 1px solid;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: rgb(226, 226, 226);
+            border: 1px solid;
+            text-align: center;
+            padding: 8px;
+        }
+
+        input {
+            border:none
+        }
+    </style>
+    
+</head>
+<body>
+    <h1 align="center"> 이 력 서</h1>
+    <hr style="border: solid 1px;" width="150px" align="center"><br>
+
+    <table width="750px">
+        <tr>
+            <td style="border: none" colspan="7"><h2>1. 기본 정보</h2></td>
+        </tr>
+        <tr>
+            <!-- rowspan row 늘때마다 바꿔야함 -->
+            <th rowspan="7" width="150px" style="background-color:white"> <사 진> </th>
+            <th width="120px">성  명</th><td width="120px"></td>
+            <th width="80px">성  별</th><td width="100px"></td>
+            <th width="80px">나  이</th><td width="100px"></td>
+        </tr>
+        <tr>
+            <th width="120px">주민등록번호</th><td colspan="7"></td>
+        </tr>
+        <tr>
+            <th width="100px" rowspan="2">주  소</th><td style="border-bottom: none" colspan="7"></td>
+        </tr>
+        <tr>
+            <td style="border-top: none; border-right: none" colspan="1">(우편번호:</td>
+            <td style="border-top: none; border-left: none" colspan="6">)</td>
+        </tr>
+        <tr>
+            <th colspan="1">전화번호</th>
+            <td colspan="2"></td>
+            <th colspan="1">휴대폰</th>
+            <td colspan="2"></td>
+        </tr>
+        <tr>
+            <th width="120px">홈페이지주소</th><td colspan="7"></td>
+        </tr>
+        <tr>
+            <th width="120px">e-mail</th><td colspan="7"></td>
+        </tr>
+        <tr>
+            <th>호적 관계</th>
+            <th width="120px">호주 성명</th><td colspan="2"></td>
+            <th width="120px">호주와의 관계</th><td colspan="2"></td>
+        </tr>
+    </table>
+</body>
+</html>
