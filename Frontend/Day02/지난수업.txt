@@ -1,0 +1,37 @@
+웹페이지(.html)의 구조 정의 언어 : html
+<!DOCTYPE html>
+<head> <meta> <style> <script> <title> <link> </head>
+<body>
+텍스트 - h1~h6, strong, em, dl, dd, ruby
+목록 - ol, ul, li
+영역 - div, span
+테이블 - table, tr, td
+폼 - form(action, method), input(text, password, submit, reset, email, checkbox, radio), select, textarea, ...
+태그 => 명령어
+다른문서 연결 - <a>
+미디어 - audio, video
+<태그>내용</태그> => Element
+</body>
+</html>
+
+#####################################################################################################################
+CSS을 html에 포함시키는 방법
+1. 외부링크 <link re="" href="">
+2. <style></style>
+3. inline 방식 <태그 style="">  * 웹 표준에서 권장하지 않음
+
+CSS 기본문법
+selecter {
+    property : value;
+    property : value;
+    ...
+}
+
+selector 종류 : 
+*, #id값, .class속성값, 태그명, 부모태그 자손태그, 부모태그 > 자식태그,
+[속성명], [속성명=속성값], [속성명~=속성값], [속성명|=속성값], [속성명^=속성값], [속성명$=속성값]
+:가상seletor, ::가상seletor
+
+#####################################################################################################################
+css의 background-color, color속성에 값 설정:
+#RGB(16진수) #000000~#ffffff, 생상상수명(predefined)
