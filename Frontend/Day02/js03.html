@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+ 
+</head>
+<body>
+ <h1> 반복문</h1>
+ <p>  반복횟수를 알때 for문 </p>
+ <p>  반복수행 조건을 알때 while문  (선 조건체크 후 수행)</p>
+ <p>  무조건 처음에 1회 반복수행후  조건을 체크해서 true이면 계속수행,
+     false이면 반복문 탈출  : do ~while문 </p>  
+     Quiz>for문 사용 1~10까지의 누적합 출력 <br>
+     Quiz>for문 사용 1~10까지의 정수중 홀수를 역순으로 출력 <br>
+<script> 
+ /*
+   for (카운트변수 초기화 ; 반복수행조건표현식 ; 증감식) {
+       반복수행문장;
+       .....
+   }
+ */
+   var hap = 0;
+   for(var i=0;i<10;i++){
+        hap += (i+1);
+   }
+   document.write('1~10 누적합은 '+hap +"<br>");
+   for(var i=10;i>0;i--){
+       if(i%2==1){
+        document.write(i+"&nbsp;&nbsp;");
+       }
+   }
+   document.write("<br>");
+</script>  
+Quiz>while문 사용 1~10까지의 누적합 출력 <br>
+Quiz>while문 사용 1~10까지의 정수중 홀수를 역순으로 출력 <br>
+<script>
+   /*
+     while(조건) {
+        반복 수행 문장
+     }
+     */
+     var cnt=0, hap = 0;
+    while(cnt <10){
+        hap += (cnt+1);
+        cnt++;
+     }
+     document.write('1~10 누적합은 '+hap +"<br>");
+     cnt = 10
+     while(cnt>0 ){
+       if(cnt%2==1){
+        document.write(cnt+"&nbsp;&nbsp;");
+       }
+       cnt--;
+   }    
+   document.write("<br>");
+</script>    
+반복문 내부에 반복문 사용 가능 <br>
+반복문 내부에 조건문 사용 가능 <br>
+반복문 내부에서 조건을 만족하면 남은 반복을 수행하지 않고 반복문 탈출 : break <br>
+반복문 내부에서 조건을 만족하면 반복수행문장을 pass시키고 다음 반복 회차로 진행시킬때 continue <br>
+javascript 내장 객체 Math.random()는 0<= ~<1 임의의 number를 반환<br>
+<script>
+   var rnum = Math.random()
+   document.write(rnum+" <br>");
+   //1~100사이의 임의의 난수를  생성하려면 
+   var int_rnum = Math.random()*100+1;
+   document.write( int_rnum+" <br>");
+   document.write(parseInt(int_rnum)+" <br>");
+   document.write(Math.trunc(int_rnum)+" <br>");
+</script>
+Quiz> 1~100사이의 컴퓨터가 생성한 난수를 5번의 기회를 제공하고 맞추는 게임 <br>
+
+</body>
+</html>
