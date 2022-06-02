@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> javascript 함수 </title>      
+    <script>
+
+    </script>
+    </head>
+<body>
+    javascript  함수 <br>
+    모든 함수는 가변인수 함수입니다.<br>
+    함수에 선언된 인수의 개수를 초과해서 파라미터 전달하면? => 무시함<br>
+    함수에 선언된 인수의 개수 미만으로 파라미터 전달하면? => undefined로 처리됨<br>
+ 
+<script>
+ function f1(a, b){
+    document.write(a+", "+b+"<br>"); 
+ }
+ f1(100, "A", true);
+ f1("A" );
+ document.write(" <hr>"); 
+ function sumAll(){    
+    document.write(arguments.length+" <br>"); 
+    for (let idx=0;idx<arguments.length;idx++){
+        document.write(arguments[idx]+" , "); 
+     }
+     document.write(" <br>"); 
+ }
+ sumAll(1,2,3,4,5,6,7,8,9,10);
+ sumAll();
+ sumAll(1,2,3,4,5);
+ console.dir(sumAll);
+ 
+</script>
+ javascript의 모든 함수는 전달된 파라미터를 arguments에 저장합니다<br>
+
+</body>
+</html>

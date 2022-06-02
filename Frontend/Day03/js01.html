@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> javascript 함수 </title>
+      
+    <script>
+
+    </script>
+    </head>
+<body>
+    javascript  함수 <br>
+함수 - 특정 기능을 수행하는 코드들의 묶음(모듈화)에 이름을 선언하고 필요할때마다 호출해서 사용(재사용성)<br>
+선언적 함수  - function 이름(매개변수) {  .... }<br>
+익명함수 :    ( function  (매개변수) {  .... }).()  => 즉시실행함수<br>
+                 var 변수 = function  (매개변수) {  .... } <br>
+                      변수()<br>
+
+<script>
+func1();
+//func2();
+function func1(){
+    alert("named function called")
+}
+var func2 = function  (){
+    alert("annoymous function called")
+}
+</script>
+javascript엔진은 함수 definition은 메모리(Global 영역) 먼저 로딩함<br>
+변수는 선언과 초기화 된 후에 변수를 사용할 수 있습니다.(선언과 초기화 없이 사용하면 오류)<br>
+함수적 프로그래밍의 특성 : 함수를 1급 객체로 취급하기 때문에 함수 정의를 변수에 저장할 수 있습니다.<br>
+함수는 리턴값이 있을 수도 있고, 없을수도 있습니다. <br>
+<script>
+   //calc함수 : 두 정수와 연산자를 입력받아서 결과 리턴 return
+   //calc2함수 : 두 정수와 연산자를 입력받아서 결과 출력
+   function calc(num1, num2, op) {
+       let result = 0;
+        if (op == "+") {
+            result = num1+num2;
+        }else if (op == "-") {
+            result = num1-num2;
+        } else if (op == "*") {
+            result = num1*num2;
+        } else if (op == "/") {
+            result = num1/num2;
+        } 
+        return result;
+   }
+
+   function calc2(num1, num2, op) {     
+        switch(op ){
+            case "+" :  
+            document.write(num1+"+"+num2+"="+(num1+num2)); break;
+            case "-":
+            document.write(num1+"-"+num2+"="+(num1-num2));break;
+            case "*":
+            document.write(num1+"*"+num2+"="+(num1*num2));break;
+            case "/" :
+            document.write(num1+"/"+num2+"="+(num1/num2));break;
+        }        
+   }
+   document.write(calc(5, 5, "*")+"<br>");
+   document.write(calc2(5, 5, "*")+"<br>");
+</script>

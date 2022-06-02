@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> javascript 함수 </title>      
+    <script>
+
+    </script>
+    </head>
+<body>
+    javascript  함수 <br>
+    함수의 파라미터로 함수를 전달할 수 있습니다.<br>    
+    함수에서 함수 definition을 리턴할 수 있습니다.<br>
+    함수 내부에 선언된 로컬변수를 함수 외부에서 사용해야 하는 경우, 
+    로컬변수를 리턴하는 내부함수를 정의하고 리턴합니다 : 클로저 함수<br>
+ 
+<script>
+   function callee(num){
+       alert("Callee() called ..."+num);
+   }
+   function caller(f, n){
+       for (idx=0 ; idx<n ;idx++){
+           f(idx);
+       }
+   }
+   //caller(callee, 5);
+   var name = "global"; //window객체의 속성으로 추가됨
+   function test(){   //window객체의 내부 함수로 추가됨
+       let name = "local" ; //로컬 변수
+       let nickname = "local" ; //로컬 변수
+       document.write(name+"<br>");//?
+       document.write(window.name+"<br>");//?
+       document.write(this.name+"<br>");//?
+   }
+   test();
+   console.dir(window);
+  // document.write(nickname+ "<br>");
+    
+   function closer_test(nm){ 
+        let nickname = nm ;
+        document.write("closer_test() called<br>");
+        return function(){
+              return nickname;
+        }
+   } 
+   var f = closer_test("Korea");
+   var nick = f();
+   document.write("로컬변수 nickname의 값은 "+nick +"<br>");
+   document.write("로컬변수 nickname의 값은 "+closer_test("대한민국")() +"<br>");
+</script>
+ 자바스크립트의 내장함수 : <br>
+ parseInt(string), parseFloat(string), isNaN(number), isFinite(number), eval(string) <br>
+ <script>
+      document.write(parseInt("1234원") +"<br>");
+      document.write(Number("1234원") +"<br>");
+      document.write(parseInt("0x1234원") +"<br>"); // 16진수
+      eval("alert('문자열을 javascript코드로 해석 실행');")
+ </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
