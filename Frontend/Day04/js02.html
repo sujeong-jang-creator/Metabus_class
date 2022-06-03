@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript BOM</title>
+    <style>
+        td {
+            border: 1px solid black;
+            font-size: 300%;
+        }
+
+        td:hover {
+            background-color: blue;
+            color: white;
+        }
+
+        #hoverResult {
+            color: green;
+            font-size: 200%;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            let btn = document.getElementById("findHover");
+            // onclick Event 발생원인
+            // - 개체를 마우스로 클릭할시에 이벤트가 발생된다.
+            // 입력 폼에서 ENTER키를 눌렀을때 발생된다.
+            btn.onclick = function(){
+                // name,id,class를 제한하지 않고 css선택자를 사용하여 요소를 찾습니다.
+                let hovered = document.querySelector("td:hover");
+                console.log(hovered);
+                if (hovered)
+                    document.getElementById("hoverResult").innerHTML = hovered.innerHTML;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <section>
+        <table>
+            <tr>
+                <td>A1</td>
+                <td>A2</td>
+                <td>A3</td>
+            </tr>
+            <tr>
+                <td>B1</td>
+                <td>B2</td>
+                <td>B3</td>
+            </tr>
+            <tr>
+                <td>C1</td>
+                <td>C2</td>
+                <td>C3</td>
+            </tr>
+        </table>
+    </section>
+    <button id="findHover" autofocus>Find 'td:hover' target</button>
+    <div id="hoverResult"></div>
+</body>
+
+</html>

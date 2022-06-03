@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    div, section, article, h1, p {
+        border: 2px solid black;
+        padding : 10px;
+        margin: 10px;
+    }    
+    </style>
+    <script>
+        window.addEventListener("load",function(){
+            let div1 = document.getElementById("main");
+            div1.onclick = function(evt){
+                evt.stopPropagation();
+                this.style.backgroundColor='lightgray';
+            }
+            let section1 = document.getElementById("outer");
+            section1.onclick = function(evt){
+                evt.stopPropagation();
+                this.style.backgroundColor='pink';
+            }
+            let article1 = document.getElementById("content");
+            article1.onclick = function(evt){
+                evt.stopPropagation();
+                this.style.backgroundColor='orange';
+            }
+            let header1 = document.getElementById("header1");
+            header1.onclick = function(evt){
+                // evt 객체에 이벤트 전파를 막는 함수.
+                evt.stopPropagation();
+                this.style.backgroundColor='olive';
+            }
+            let p1 = document.getElementById("p1");
+            p1.onclick = function(evt){
+                evt.stopPropagation();
+                this.style.backgroundColor='violet';
+            }
+        }, false);
+    </script>
+</head>
+<body>
+    이벤트 전달 방식 : <br>
+    이벤트 버블링 : 자식노드에서 부모노드로 이벤트 전파 방식 <br>
+    이벤트 캡처링 : 부모노드에서 자식노드로 이벤트가 전파되는 방식 <br>
+    <div id="main">
+        <section id="outer">
+            <article id="content">
+                <h1 id="header1">
+                    <p id="p1">이벤트 전파</p>
+                </h1>
+            </article>
+        </section>
+
+    </div>
+</body>
+</html>

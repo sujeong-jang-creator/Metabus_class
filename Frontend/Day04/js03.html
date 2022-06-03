@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> javascript DOM </title>
+    <style>
+        td {
+            border: 1px solid black;
+            font-size: 300%;
+        }
+
+        #checkedResult {
+            color: green;
+            font-size: 200%;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            let btn = document.getElementById("findChecked");
+            btn.onclick = function () {
+                let selected = document.querySelectorAll("*:checked");
+                //console.log(selected.length)
+                for (let i = 0; i < selected.length; i++) {
+                    document.getElementById("checkedResult").innerHTML += selected[i].name + " ";
+                }
+
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <section>
+        <table>
+            <tr>
+                <td><input type="checkbox" name="A1"> A1</td>
+                <td><input type="checkbox" name="A2">A2</td>
+                <td><input type="checkbox" name="A3">A3</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="B1">B1</td>
+                <td><input type="checkbox" name="B2">B2</td>
+                <td><input type="checkbox" name="B3">B3</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="C1">C1</td>
+                <td><input type="checkbox" name="C2">C2</td>
+                <td><input type="checkbox" name="C3">C3</td>
+            </tr>
+        </table>
+    </section>
+    <button id="findChecked" autofocus>Find checked Box</button>
+    <div id="checkedResult"></div>
+    <script>
+
+
+    </script>

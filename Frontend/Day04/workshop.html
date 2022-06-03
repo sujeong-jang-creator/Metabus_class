@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 1번</title>
+</head>
+
+<body>
+    1. ID와 PASSWORD input text 입력된 값을 validation 체크 수행하고 부적합하면 alert으로 알림<br>
+  
+    <hr>
+
+    <script>
+        function checking_id() {
+            var id = document.getElementById("id").value;
+
+            if (id.length < 6) {
+                alert("ID는 6자 이상이여야 합니다.")
+            } else {
+                document.getElementById("idcheck").innerHTML = "사용 가능한 ID 입니다.";
+            }
+        }
+
+        function checking_pw() {
+            var pw = document.getElementById("pw").value;
+
+            if (isNaN(pw)) {
+                alert("PW는 오로지 숫자만 가능합니다.")
+            } else {
+                if (pw.length < 6) {
+                    alert("PW는 6자 이상이여야 합니다.")
+                } else {
+                    document.getElementById("pwcheck").innerHTML = "사용 가능한 PW 입니다.";
+                }
+            }
+        }
+    </script>
+
+    ID : <input id="id">
+    <button onclick="checking_id()">클릭</button>
+    <p id="idcheck"></p>
+
+    PW : <input id="pw">
+    <button onclick="checking_pw()">클릭</button>
+    <p id="pwcheck"></p>
+</body>
+
+</html>

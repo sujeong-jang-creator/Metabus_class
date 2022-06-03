@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript Event</title>
+    <script>
+        // window.onload = function(){
+        //     alert('handler1');
+        // }
+        // window.onload = function(){
+        //     alert('handler2');
+        // }
+        // window.onload = function(){
+        //     alert('handler3');
+        // }
+        // window.addEventListener("load", function(){
+        //     alert('handler1');
+        // }, false);
+        // window.addEventListener("load", function(){
+        //     alert('handler2');
+        // }, false);
+        // window.addEventListener("load", function(){
+        //     alert('handler3');
+        // }, false);
+
+        // window.onload = function () {
+        //     let header1 = document.getElementById("header1");
+        //     header1.onclick = function () {
+        //         alert('handler');
+        //         // css를 이렇게도 쓸수있네?
+        //         this.style.backgroundColor='black';
+        //         this.style.color='white';
+        //     }
+        // }
+
+        window.onload = function () {
+            let header1 = document.getElementById("header1");
+            header1.onclick = function (evt) {
+                let result = "";
+                for (let key in evt){
+                    result += (key+":"+evt[key]+"\n");
+                }
+                alert(result);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    Event Model 1 방식은 이벤트 소스와 이벤트 핸들러를 연결할 때 on이벤트타입 = 핸들러 <br>
+    Event Model 2 방식은 w3c 표준방식으로 addEventListener(이벤트타입, 핸들러, 이벤트캡처여부) <br>
+    Event Model 1 방식은 하나의 이벤트에 연결할 수 있는 핸들러가 1개만 가능 <br>
+    Event Model 2 방식은 하나의 이벤트에 연결할 수 있는 핸들러가 여러개 연결 가능 <br>
+    <h1 id="header1"> 저를 클릭해주세요 </h1>
+    이벤트에 대해서 한번만 수행하는 핸들러는 on이벤트타입 = null 처리합니다. <br>
+    핸들러 함수 내부에서 이벤트 소스객체를 참조할 때 this를 사용합니다. <br>
+    핸들러 함수에는 발생한 이벤트관련 정보가 저장된 이벤트객체가 첫번쨰 인수로 전달됩니다.  <br>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> javascript 객체 </title>      
+    <script>
+
+    </script>
+    </head>
+<body>
+    javascript  객체 <br>
+    1. JSON 으로 객체 정의 <br>
+    2. function 문법으로 객체 정의 <br>
+       객체를 생성하고 초기화하는 (생성자)함수를 정의, 함수 호출 <br>
+    3. ESjs 5? 6?  class로 객체 정의 <br>
+<script>
+   function Student(name, kor, math, eng){
+       //생성자 함수로부터 생성되는 객체의 속성을 초기화
+       this.name = name;
+       this.kor = kor;
+       this.math = math;
+       this.eng = eng;
+       //기능 메서드 추가
+       this.getTotal = function(){
+           return this.kor+this.math+this.eng
+       };
+       this.getAverage= function(){
+           return this.getTotal()/3
+       };
+       //자동으로 javascript의 최상위 Root객체 Object를 상속받음
+       //Object.toString()를 재정의 override 할 수 있음
+       //Object.toString()는 객체를 표현하는 문자열을 반환
+       this.toString = function(){
+            return name+"["+ kor+", "+math+", "+eng+"]"
+       }
+   }
+   document.write("<hr>");
+   Student.prototype.getTotal = function(){
+       return this.lor+this.math+this.eng
+   };
+   Student.prototype.getAverage = function(){
+       return this.getAverage()/3
+   };
+   Student.prototype.toString = function(){
+       return name+"["+this.lor+", "+this.math+", "+this.eng+"]"
+   };
+   document.write("<hr>");
+
+   var students = [];
+   students.push(new Student('홍길동', 100,80,90));
+   students.push(new Student('이몽룡', 90,80,90));
+   students.push(new Student('박문수', 70,80,90));
+   for (let i in students){
+       document.write(students[i]+"<br>");
+       document.write(students[i].name+"의 총점 :"+students[i].getTotal()+"<br>");
+       document.write(students[i].name+"의 총점 :"+students[i].getAverage()+"<br>");
+   }
+   document.write("<hr>");
+   
+</script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

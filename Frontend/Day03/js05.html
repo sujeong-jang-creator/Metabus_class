@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    javascript 객체 <br>
+    1. JSON으로 객체 정의 <br>
+    JSON객체에 key가 존재하는지 체크하는 연산자 in <br>
+    객체[키] 또는 객체.키로 value값을 사용 <br>
+    객체의 속성을 동적으로 추가 할 수 있음<br>
+    객체의 속성을 동적으로 삭제 할 때 delete<br>
+    with(객체){객체명 사용하지 않고 key로만 value 참조할 수 있음} <br>
+    <script>
+        var person = {
+            "name" : "홍길동",
+            "age" : 30,
+            "address" : "Seoul",
+            "student" : false
+        }
+        document.write(typeof(person)+"<br>");
+        for (let key in person){
+            document.write(key+":"+person[key]+"<br>");
+        }
+        document.write(('email' in person) + "<br>");
+        document.write(('address' in person) + "<br>");
+        document.write(person.address + "<br>");
+        person['phone'] = '010-0000-1111';
+        person['job'] = 'Developer';
+        delete person['age'];
+        document.write("<hr>");
+        with (person){
+            document.write("name :"+name+"<br>");
+            // document.write("age :"+age+"<br>");
+            document.write("phone :"+phone+"<br>");
+            document.write("address :"+address+"<br>");
+            document.write("job :"+job+"<br>");
+            document.write("student :"+student+"<br>");
+        }
+    </script>
+</body>
+</html>

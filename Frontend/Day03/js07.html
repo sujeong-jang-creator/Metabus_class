@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> javascript 객체 </title>      
+    <script>
+
+    </script>
+    </head>
+<body>
+    javascript  객체 <br>
+    객체지향 언어의 3특성 : 상속(재사용성), 다형성 , 캡슐화 (은닉) <br>
+<script>
+    /*
+    function Student(name, kor, math, eng){
+       //생성자 함수로부터 생성되는 객체의 속성을 초기화
+        let name = name;
+        let kor = kor;
+        let math = math;
+        let eng = eng;       
+   }
+   var hong = new Student("홍길동", 80,90,100);
+   document.write(hong.name+"의 총점 :"+(hong.math+hong.kor+hong.eng)+"<br>");
+   */
+   function Rectangle(w, h){
+	var width = w; //private 속성으로 정의됨
+	var height = h;
+	this.getWidth = function(){ return width;}
+	this.getHeight = function(){return height;}
+	this.setWidth = function(w){
+		if(w>0){
+			width = w;
+		}else{
+			throw '음수를 너비로 설정할 수 없습니다.';
+		}
+	};
+	this.setHeight = function(h){
+		if(h>0){
+			height = h;
+		}else{
+			throw '음수를 높이로 설정할 수 없습니다.';
+		}
+	};
+}
+Rectangle.prototype.getArea = function(){
+	return this.getWidth()* this.getHeight();
+}
+
+function Square (length){
+	this.base = Rectangle; //상속받을 객체를 저장하는 변수 선언
+	this.base(length, length) ;//저장된 객체의 생성자를 호출해서 객체 생성함	
+}
+Square.prototype = new Rectangle();
+console.dir(Square)
+
+var rect = new Rectangle(5, 7);
+var square = new Square(5, 5);
+document.write(square.getArea()+", "+rect.getArea()+"<br>") ;
+document.write( (square instanceof Rectangle) +"<br>"); 
+</script>
+
+</body>
+</html>

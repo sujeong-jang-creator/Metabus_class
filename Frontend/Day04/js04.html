@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> javascript DOM </title>
+    <style>
+
+    </style>
+    <script>
+
+
+    </script>
+</head>
+
+<body>
+    <h2 id="header2">document객체는 html문서내에 요소 검색, 추가, 삭제등을 처리합니다.</h2>
+    createElement() : html문서내에 요소(Element, Node) 생성 <br>
+    createTextNode() : html문서내에 Text내용 생성 <br>
+    createAttribute() : html문서내에 속성 생성 <br>
+    부모노드를 선택해서 appendChild()로 추가해야 합니다.<br>
+
+    <script>
+        let header1 = document.createElement('h1');
+        let text1 = document.createTextNode('새로운 노드 추가');
+        header1.appendChild(text1);
+        document.body.appendChild(header1);
+        //<img src=이미지경로이름">
+        let img1 = document.createElement('img');
+        img1.src = '../images/img_tree.jfif';
+        img1.width = 150;
+        img1.height = 250;
+        document.body.appendChild(img1);
+        let img2 = document.createElement('img');
+        img2.setAttribute('src', '../images/img_flwr.jfif');
+        img2.setAttribute('width', 300);
+        img2.setAttribute('height', 250); 
+        document.body.appendChild(img2);
+        document.body.appendChild(img2);
+
+        document.body.removeChild(document.getElementById("header2"));
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

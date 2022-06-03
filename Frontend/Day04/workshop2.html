@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 2번</title>
+</head>
+
+<body>
+    2. select 태그의 option에 과일종류중 하나가 선택 (onchange)되면 alert으로 알림 <br>
+
+    <hr>
+
+    <script>
+        function fruits(fruit) {
+            alert(fruit.value + "를 선택했습니다.");
+        }
+    </script>
+
+    <select name="fruit" onchange="fruits(this)">
+        <option value="사과">사과</option>
+        <option value="키위">키위</option>
+        <option value="바나나">바나나</option>
+        <option value="포도">포도</option>
+    </select>
+    <div id='result'></div>
+
+</body>
+
+</html>

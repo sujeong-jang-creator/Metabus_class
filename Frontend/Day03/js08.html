@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> javascript 객체 </title>
+    <script>
+
+    </script>
+</head>
+
+<body>
+    javascript 객체 <br>
+    클래스는 객체를 생성하기 위한 설계도 <br>
+    class로 정의된 객체의 상속은 extends 키워드로 상속 정의 <br>
+    super()는 부모클래스의 생성자를 호출해서 속성을 초기화할때 사용<br>
+    <script>
+        class User {
+            /* 생성자함수는 생성되는 객체의 속성을 초기화합니다. */
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            toString() {
+                return this.name + "[" + this.age + "]"
+            }
+        }
+        class Student extends User {
+            /* 생성자 메서드 */
+            constructor(name, age, grade, kor, eng, math) {
+                super(name, age);
+                this.grade = grade;
+                this.kor = kor;
+                this.eng = eng;
+                this.math = math;
+            }
+            getTotal() {
+                return this.kor + this.eng + this.math;
+            }
+            getAverage() {
+                return this.getTotal() / 3
+            }
+        }
+        var user1 = new Student("이몽룡", 18, 3, 90, 85, 80);
+        document.write(user1 + "<br>");
+        document.write(user1.name + "[" + user1.kor + ", " + user1.eng + ", " + user1.math + "]" + "<br>");
+        document.write(user1.name + "의 총점 :" + user1.getTotal() + "<br>");
+        document.write(user1.name + "의 평균 :" + user1.getAverage() + "<br>");
+        console.dir(Student)
+    </script>
+</body>
+
+</html>

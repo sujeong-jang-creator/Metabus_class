@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            let btn1 = document.getElementById("btn1");
+            btn1.onclick = function () {
+                let cnt1 = document.getElementById("count1").innerHTML;
+                // parseInt는 문자열을 숫자로 변환해주는 것
+                document.getElementById("count1").innerHTML=parseInt(cnt1)+1;
+            };
+
+            let btn2 = document.getElementById("btn2");
+            btn2.onclick = function () {
+                let cnt2 = document.getElementById("count2").innerHTML;
+                document.getElementById("count2").innerHTML=parseInt(cnt2)+1;
+                btn1.onclick();
+            };
+        }
+    </script>
+</head>
+
+<body>
+강제적 이벤트 발생 <br>
+<button id="btn1"> Button 1</button>
+<button id="btn2"> Button 2</button>
+<h3> Button1 Click Count : <span id = "count1">0</span></h3>
+<h3> Button2 Click Count : <span id = "count2">0</span></h3>
+</body>
+
+</html>

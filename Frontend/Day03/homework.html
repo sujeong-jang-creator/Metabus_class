@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> javascript 객체 </title>
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <!-- 1. student객체가 저장된 배열의 평균의 내림차순으로 정렬하여 출력하시오 <br>
+     2. 주민번호를 입력받으면 정상적인 주민번호인지 비정상적인 주민번호인지 출력하는 함수를 정의하시오 <br>
+     주민번호를 입력하면 유효한지 유효하지 않은지 bool값으로 반환하는 함수를 정의하고 함수를 실행시켜서 결과를 출력하시오<br>
+ 
+ * 사용자로부터 주민번호 입력 받음 : 000000-0000000 (문자열로 읽어들임)<br>
+		-을 제외시키고 한문자 한문자를 정수로 변환해서 int[] 에 저장 (배열의 크기는 13)<br>
+		주민번호 체크 :<br>
+		주민번호 앞에서부터 12자리의 각 자리의 수에 가중치 <br>
+		{ 2, 3, 4, 5, 6, 7, 8, 9, 2, 3, 4, 5 }를 곱합니다.<br>
+		곱한수를 모두 더하여 총합을 구합니다.	<br>	 
+		총합을 11로 나눈 나머지를 구합니다.<br>
+		그 나머지를 11에서 뺀 결과가 CHECK DIGIT 입니다.<br>
+		뺀 결과가 2자리수인 경우에는 2자리수를 10으로 나눈 나머지가 CHECK DIGIT가 됩니다.<br>
+		CHECK DIGIT의 값이 입력 숫자 스트링의 13번째 숫자와 같으면 "CORRECT", 다르면 "INCORRECT"를 출력합니다.<br>
+		HINT> (11-나머지)%10 또는 (11-total%11)%10<br> -->
+
+
+    <script>
+        function Student(name, kor, math, eng) {
+            //생성자 함수로부터 생성되는 객체의 속성을 초기화
+            this.name = name;
+            this.kor = kor;
+            this.math = math;
+            this.eng = eng;
+            //기능 메서드 추가
+            this.getTotal = function () {
+                return this.kor + this.math + this.eng
+            };
+            this.getAverage = function () {
+                // 1. Math.round 로 반올림 해줌.
+                return Math.round(this.getTotal() / 3)
+            };
+            //자동으로 javascript의 최상위 Root객체 Object를 상속받음
+            //Object.toString()를 재정의 override 할 수 있음
+            //Object.toString()는 객체를 표현하는 문자열을 반환
+            this.toString = function () {
+                return name + "[" + kor + ", " + math + ", " + eng + "]"
+            };
+        }
+        var students = [];
+        students.push(new Student('홍길동', 100, 80, 90));
+        students.push(new Student('이몽룡', 90, 80, 90));
+        students.push(new Student('박문수', 70, 80, 90));
+        students.push(new Student('심청', 90, 80, 90));
+        students.push(new Student('도깨비', 50, 60, 55));
+        
+        // 1.student객체가 저장된 배열의 평균의 내림차순으로 정렬하여 출력하시오 <br>
+        let arr = [13];
+        for (let i in students) {
+            arr.push(students[i].getAverage());
+        }
+        document.write("1번 문제 : "+arr.sort(function (a, b) {
+            return b - a;
+        }) + "&nbsp;");
+        document.write("<hr>");
+
+        // 2. 주민등록번호 문제
+        const N = 13;
+        let int = [];
+        const num = [2, 3, 4, 5, 6, 7, 8, 9, 2, 3, 4, 5];
+        let check = [];
+        
+        var input = prompt('주민등록번호를 입력해주세요');
+        input = input.replace("-","");
+
+        int.push(Number(input));
+        for(let i=0; i<N; i++){
+            int[i] = input[i];
+        };
+
+        for(let i=0; i<N; i++){
+            check[i] = int[i]*num[i];
+        };
+        
+        document.write("2번 문제"+"<br>");
+        document.write("주민번호 체크 : " + input +"<br>");
+        document.write("<hr>")
+        document.write(int);
+
+        document.write("<hr>")
+        document.write("주민번호 체크 : " + check +"<br>");
+
+        </script>
+</body>
+
+</html>

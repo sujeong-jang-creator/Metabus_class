@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function check_jumin(){
+            let jumin_str = prompt('주민번호입력(000000-0000000', '970414-2078717');
+            let jumin_nums = [];
+            for (let i=0; i<jumin_str.length; i++){
+                if (jumin_str.charAt(i)=="-") continue;
+                jumin_nums.push(parseInt(jumin_str.charAt(i)));
+            }
+            let digit = 2;
+            let total = 0;
+            for (let i=0; i<jumin_nums.length-1; i++){
+                if (digit==10) digit=2;
+                total += jumin_nums[i]*digit;
+                digit++;
+            }
+            check_digit = (11-total%11)%10;
+            console.log(check_digit);
+            console.log(jumin_nums);
+            if (check_digit == jumin_nums[12])
+                console.log("Correct")
+            else{
+                console.log("InCorrect")
+            }
+        }
+        check_jumin();
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> javascript 예외처리 </title>
+    <style>
+
+    </style>
+    <script>
+        window.addEventListener("load", function () {
+
+        }, false);
+
+        function divide(a, b) {
+            if (b == 0)
+                throw 'DivideByZeroException';
+            return a / b;
+        }
+    </script>
+</head>
+
+<body>
+    오류 종류 : <br>
+    1. 문법적 오류 syntax error <br>
+    2. 실행시에 발생되는 오류 Runtime Exception <br>
+    오류가 발생하면 프로그램 수행은 중단됨 <br>
+    Exception은 가벼운, 논리적 오류로서 프로그램적으로 보완하면 오류가 발생되지 않고 프로그램을 계속적으로 수행시킬 수 있음=> 예외처리 <br>
+    오류 발생이 예측되면 오류가 발생하지 않도록 사전에 처리 : if 조건 <br>
+    try ~ catch ~ finally 구문 블럭을 사용해서 예외 처리 <br>
+    try { <br>
+    //예외 발생 가능성이 존재하는 문장;<br>
+    }catch(exception ) {<br>
+    //예외처리 문장<br>
+    }finally {<br>
+    //무조건 수행, Resource 정리<br>
+    }<br>
+    예외를 발생시킬 때 => throw 예외타입 객체; <br>
+    <script>
+        //console.log(divide(5, 0));
+        try {
+            divide(5, 0);
+            //divide(5, 1);
+        } catch (exception) {
+            // console.log(exception.message);
+            // console.log(exception.name);
+            // console.log(exception.description);
+            if (exception == 'DivideByZeroException') {
+                alert("exception catched ")
+            }
+        } finally {
+            console.log('항상 수행');
+        }
+    </script>
+</body>
+
+</html>

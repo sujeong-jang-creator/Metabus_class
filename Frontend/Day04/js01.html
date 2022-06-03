@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript BOM</title>
+    <script>
+
+    </script>
+</head>
+
+<body>
+    navigator : 웹 페이지를 실행시키는 브라우저에 대한 정보 제공 <br>
+    history : 브라우저에서 사용자가 방문한 사이트 정보를 제공 <br>
+    history.length : history에 저장된 url 개수 (이동가능한 url 개수) <br>
+    history.back()<br>
+    history.forward()<br>
+    history.go(정수)<br>
+    document는 html페이지의 root node<br>
+    document 객체의 속성과 메서드를 이용해서 html페이지의 요소를 검색, 추가, 수정, 삭제할 수 있다.
+    document.getElementsByTagName() : 배열타입으로 리턴 (Element객체가 저장)
+    document.getElementsByName()
+    document.getElementsByClassName()
+    document.getElementById() : 하나의 Element(Node)
+    document.querySelector("css의 selector문법 사용 조건") : 하나의 Element(Node) 리턴
+    document.querySelectorAll("css의 selector문법 사용 조건") : 배열타임으로 리턴 (Element)
+
+    <script>
+        for (let key in navigator) {
+            // document.write(key + ":" + navigator[key] + "<br>");
+        }
+    </script>
+
+    <button onclick = "history.back()"> 이전페이지 </button>
+    <button onclick = "history.forward()"> 다음페이지 </button>
+    <button onclick = "history.go(-1)"> 1단계 이전페이지 </button>
+    <button onclick = "history.go(-2)"> 2단계 이전페이지 </button>
+    <button onclick = "history.go(-3)"> 3단계 이전페이지 </button>
+</body>
+
+</html>
