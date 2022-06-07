@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // $('img').attr('width', function(index))
+            /*
+            $('img').attr('width', function(index){
+                return (index+1)*100;
+            })
+            */
+            $('img').attr({
+                'width': function (index) {
+                    return (index + 1) * 100;
+                },
+                'height': 150
+            });
+            // $('body').append($('h1').html());
+            // $('body').append($('h1').text());
+            // $('div').html('<h3><i>내용넣기</i></h3>');
+            // $('div').text('<h3><i>내용넣기</i></h3>');
+            /*
+            $('div').html(function(index){
+                return '<h3><i>내용넣기 ' + index + '</i></h3>'
+            });
+            */
+            $('div').text(function(index){
+                return '<h3><i>내용넣기 ' + index + '</i></h3>'
+            });
+        });
+    </script>
+</head>
+
+<body>
+    jQuery HTML/CSS 조작 메서드 : <br>
+    attr(name, value) <br>
+    attr(name, function(){}) <br>
+    attr(object) <br>
+    <img src="/images/bs2.jpg">
+    <img src="/images/img_flwr.jfif">
+    <img src="/images/img_tree.jfif"> <br>
+    css(name, value) <br>
+    css(name, function(){}) <br>
+    css(object) <br>
+    html() : html 태그로 식별 및 처리됨<br>
+    text() : text로 식별 및 처리됨<br>
+    html(value), text(function(){}) <br>
+    html(function(){}), text(function(){}) <br>
+    val() <br>
+    <h1>HTML</h1>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+
+</html>

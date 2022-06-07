@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> </title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            position: relative
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('button').click(function () {
+                var htmlStr = $(this).html();
+                var evalStr = '$("div").' + htmlStr;
+                eval(evalStr);
+            })
+            $('div').animate({
+                left: '500'
+            }, 5000).animate({
+                left: 0
+            }, 5000);
+        });
+    </script>
+</head>
+
+<body>
+    stop() 애니메이션 정지<br>
+    stop(clearQueue)<br>
+    stop(clearQueue, goToEnd)<br>
+    <button>stop()</button>
+    <button>stop(true)</button>
+    <button>stop(false, true)</button>
+    <button>stop(true, true)</button>
+    <div></div>
+
+
+</body>
+
+</html>

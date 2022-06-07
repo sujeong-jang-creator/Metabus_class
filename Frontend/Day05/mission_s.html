@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> javascript 예외처리 </title>
+    <style>
+
+    </style>
+    <script>
+        window.addEventListener("load", function () {
+            var fruit = document.getElementById("fruit");
+            fruit.addEventListener("change", function () {
+                console.log(fruit.selectedIndex)
+                alert(fruit.options[fruit.selectedIndex].value + "를 선택하였습니다.");
+            }, false);
+            var formTag = document.getElementById("f");
+            formTag.addEventListener("submit", function () {
+                var userid = document.getElementById("userid").value;
+                if (userid.length < 6) {
+                    alert("아이디는 6자 이상이어야 합니다.");
+                }
+
+
+            }, false);
+        }, false);
+    </script>
+</head>
+
+<body>
+    1. ID와 PASSWORD inpu text 입력된 값을 validation 체크 수행하고
+    부적합하면 alert으로 알림<br>
+    ID validation 체크는 6자이상<br>
+    PASSWORD validation 체크6자 이상 숫자로만 구성<br>
+    2. select 태그의 option에 과일종류중 하나가 선택(onchange)되면 alert으로 알림 <br>
+    <select id="fruit">
+        <option value="사과">사과</option>
+        <option value="수박">수박</option>
+        <option value="딸기">딸기</option>
+        <option value="복숭아">복숭아</option>
+    </select>
+    <br>
+    3. mouseEvent.html페이지의 이미지에 마우스 클릭하면 새창에서 원본 이미지를 보여주기<br>
+
+    <form id="f">
+        아이디 <input type="text" id="userid" name="userid"><br>
+
+        <input type="submit">
+    </form>
+</body>
+
+</html>
