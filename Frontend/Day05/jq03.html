@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            /*
+            // :even 은 짝수 인덱스 요소 선택
+            $("h3:even").css({
+                "backgroundColor": 'black',
+                "color": 'white'
+            });
+            $("h3").filter(':even').css({
+                "backgroundColor": 'blue',
+                "color": 'white'
+            });
+            */
+            $("h3").filter(function(index){
+                return index % 3 == 0;
+            }).css({
+                "backgroundColor": 'green',
+                "color": 'white'
+            });
+        });
+    </script>
+</head>
+
+<body>
+    jQuery Traversing : <br>
+    fiter(select문법 표현식), <br>
+    filter(함수) - 함수로부터 true를 리턴하는 요소만 선택됨 <br>
+    <h3> Header-0 </h3>
+    <h3> Header-1 </h3>
+    <h3> Header-2 </h3>
+    <h3> Header-3 </h3>
+    <h3> Header-4 </h3>
+    <h3> Header-5 </h3>
+</body>
+
+</html>

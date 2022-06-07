@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        div {
+            border : 2px solid black;
+            border-radius: 10px 10px;
+            width : 200px;
+            height: 150px;
+            text-align: center;
+        }
+    </style>
+    <!-- https://www.w3schools.com/jquery/jquery_ref_traversing.asp -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        var xmlString = " <students> ";
+            xmlString += " <student> ";
+            xmlString += " <name> 김우빈 </name> ";
+            xmlString += " <hobby> 마라톤 </hobby> ";
+            xmlString += " </student> ";
+            xmlString += " <student> ";
+            xmlString += " <name> 손석구 </name> ";
+            xmlString += " <hobby> 복싱 </hobby> ";
+            xmlString += " </student> ";
+            xmlString += " <student> ";
+            xmlString += " <name> 서현진 </name> ";
+            xmlString += " <hobby> 수영 </hobby> ";
+            xmlString += " </student> ";
+            xmlString += " </students> ";
+
+        $(document).ready(function () {
+            var xmlDoc = $.parseXML(xmlString);
+            $(xmlDoc).find('student').each(function(index){
+                var output = " <div> ";
+                    output += " <h1> " + $(this).find('name').text() + " </h1> ";
+                    output += " <p> " + $(this).find('hobby').text() + " </p> ";
+                    output += " </div> ";
+
+                // 출력
+                document.body.innerHTML += output;
+            })
+        });
+    </script>
+</head>
+
+<body>
+    jQuery Traversing : <br>
+    find() <br>
+</body>
+
+</html>

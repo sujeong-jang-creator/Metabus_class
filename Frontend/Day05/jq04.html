@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        /*
+        $(document).ready(function () {
+            $("h3").css({
+                "backgroundColor": 'green',
+            }).filter(':even').css({
+                "color": 'yellow'
+                // odd는 홀수번째. 그런데 적용이 이상하지? 왜냐면, 위에 옐로우 적용한 애들에서 다시 index를
+                // 매기거든. 그래서 세개중 홀수인(0,1,2) 1번거가 핑크가 된 거야.
+            }).filter(':odd').css({
+                "color": 'pink'
+            });
+        });
+        */
+
+        // 위의 문제를 해결하려면 end()를 이용하자!
+        $(document).ready(function () {
+            $("h3").css({
+                "backgroundColor": 'green',
+            }).filter(':even').css({
+                "color": 'yellow'
+            }).end().filter(':odd').css({
+                "color": 'pink'
+            });
+        });
+    </script>
+</head>
+
+<body>
+    jQuery Traversing : <br>
+    fiter(select문법 표현식), <br>
+    filter(함수) - 함수로부터 true를 리턴하는 요소만 선택됨 <br>
+    <h3> Header-0 </h3>
+    <h3> Header-1 </h3>
+    <h3> Header-2 </h3>
+    <h3> Header-3 </h3>
+    <h3> Header-4 </h3>
+    <h3> Header-5 </h3>
+</body>
+
+</html>
