@@ -1,0 +1,621 @@
+database - 특정 기업이나 조직 또는 개인이 필요에 의해 논리적으로 연관된 데이터를 모아 일정한 형태로 저장해 놓은 것
+* 통합된 데이터  (중복 데이터 최소화, 데이터 불일치 현상 제거)
+* 저장된 데이터 ( file, disk, tape 저장장치에 저장)
+* 운영 데이터 (업무를 위한 검색을 할 목적으로 저장된 데이터)
+* 공유 데이터
+* 내용에 의한 참조
+* 실시간 접근성
+
+FileSystem : Application, 프로그래밍 언어에 종속
+*데이터를 파일 단위 저장 => 중복=> 데이터 무결성(일관성+정확성)이 결여
+*데이터 독립성 유지가 어려움
+
+dbms(Database Management System) : Database 관리 프로그램
+*DBMS를 이용해서 데이터를 공유=> 중복 가능성 낮음
+* 데이터의 일관성 유지, 
+* 데이터의 독립성 유지
+* 데이터 복구
+* 보안
+* 동시성 제어
+* 데이터 관리 기능 제공
+
+sql(structured query language) : 표준언어, 구조적 질의 언어, 선언적 언어, 결과 지향적 언어
+DML : 데이터 조회, 테이블에 데이터 추가, 수정, 삭제
+DDL : 객체를 생성, 변경, 삭제,  
+DCL : 권한을 통해서 객체, 데이터에 대한 access, 실행 제어
+TCL : 트랜잭션의 일관성과 무결성 보장
+
+Transaction : Unit Of Work
+A : 원자성
+C : 일관성
+I : 고립성(격리성)
+D : 영속성
+
+DBMS 의 역사 :  
+계층형 DBMS (1:M 참조, 물리적인 pointer)
+망형 DBMS (N:M 참조, 물리적인 pointer)
+관계형 DBMS (수학의 관계 대수를 이용한 논리적인 참조)
+ORDBMS(객체관계형, 사용자 정의 타입 정의, 저장)  *반정형데이터, 비정형 데이터
+oracle, ibm db2, postgresql, mysql, maria db, 
+bigdata : 정보, 패턴 발견, 예측, 정형+비정형+반정형 데이터, once write, many read 목적
+nosql  : :  mongo db, redis, cassandra, big table, hbase, ...
+
+검색 종류 :
+Projection : 1 target table로부터 column기준으로 검색 (select ~ from ~)
+selection : 1 target table로부터 row기준으로 검색 (select ~ from ~where ~)
+join : 2개 이상의 table로부터 동일 속성의 컬럼값이 일치할 때 record를 결합 , 검색
+
+
+table : 행과 열의 2차원 구조를 가지는 database의 물리적 data저장 기본 객체
+column : 속성, 최소 단위 데이터
+row : tuple, record, entity instance, 속성값들로 구성(실질적인 데이터)
+primary key : 기본키(not null + unique), 각 행을 구분하는 유일한 컬럼에 설정하는 키 
+foreign key :  두 테이블의 관계를 맺어주는 키 (자식테이블의 컬럼에 설정)
+
+데이터타입(컬럼타입) :
+문자형 데이터타입 - char(~255),  varchar(~65535), tinytext(~255), text(~65535), mediumtext(~15Mbyte), longtext(~4gbyte)
+숫자형 데이터타입 - tinyint(1byte), smallint(2byte), mediumint(3byte), int(4byte), bigint(8byte), float(4byte, 부동소수점), double(8byte, 부동소수점) , decimal(고정 소수형 데이터 타입)
+날짜형 데이터타입 - date, time, datetime, timestamp, year
+binary(이진) - binary, varbinary, tinyblob, blob, mediumblob, longblob(~4Gbyte)
+
+
+select 조회하고싶은 컬럼리스트
+[from 조회할 테이블]
+[where 조회 조건]
+[order by 조회결과를 정렬할 컬럼 정렬방식(asc|desc)]
+
+where 조건에 사용되는 연산자  :
+비교연산자  <, >=, <, <=, !=, <>
+논리연산자  not , and, or
+범위 연산자  [not] between 하한값 and  상한값
+in list 연산자  : [not] in (값, 값, 값,...)
+character pattern matching : [not] like  , %, _
+null 비교 연산자 :  is null,  is not null
+
+
+#####################################################################################
+Quiz> SELECT empno, ename, job, deptno, sal, hiredate
+         FROM EMP
+         ORDER BY  hiredate;  ---select절에 선언되지 않은 컬럼으로 정렬 가능
+
+SELECT ename, sal  
+ FROM EMP
+ ORDER BY  sal   desc
+#급여가 높은 사원 3명만 검색
+SELECT ename, sal  
+           FROM EMP
+          ORDER BY  sal   desc
+          limit 3;   
+
+#급여가 높은 사원 3명만 검색 (4위 ~6위)
+SELECT ename, sal  
+           FROM EMP
+          ORDER BY  sal   desc
+          limit 3, 3;   -- limit 시작위치(0부터 시작), 개수,  limit 개수 offset 시작
+
+
+SELECT ename, sal  
+FROM EMP
+ORDER BY  sal   desc
+limit 5 offset 5; 
+
+dev.mysql.com/doc/refman/8.0/en/functions.html################################### 
+sql은 내장 함수를 사용하여 데이터를 더 powerful하게 처리 가능
+* 데이터의 계산 수행
+* 개별 데이터의 항목 수정
+* 컬럼값 변환
+* format 형식 변환
+* 중첩 사용 가능
+* select절, where절, order by절에 사용 가능
+* 반드시 1개의 값을 반환
+
+single row function(단일행 함수)  :  숫자 관련 함수, 문자 관련 함수 , 제어흐름(논리 관련) 함수, 날짜 관련 함수 ,
+mulitple row function(복수행 함수) :  group 함수, 집계함수
+ 
+################character function#######################################
+select length('korea'), length('대한민국')      
+ 
+select upper('korea'),   lower('KOREA');
+
+select substr('hello world', 7) , substr('hello world', 3, 5),      substr('hello world', -5, 3) ;
+
+select instr('hello world', 'e'), instr('hello world', 'o' ),       instr('hello world', 't' ) 
+
+select  length('   hello   '), length(trim('   hello   '));
+
+select 12345.67 , lpad(12345.67 , 10, '$'), rpad(12345.67 , 10, '*');
+
+select sal, rpad(sal, 10, '*'), lpad(sal, 10, '*')  from emp;
+
+SELECT LTRIM('    <=====>BROWNING<=====>' ) "LTRIM Example" ;
+
+SELECT RTRIM('<=====>BROWNING<=====>     ') "RTRIM Example"  ;
+
+select ascii('a'), char(65) ;
+
+# REPLACE(char, search_string, replace_string) 
+select replace('Jack and Jue' , 'J', 'Bl')  ;
+
+SELECT   ename, REPLACE(ENAME,'SC', '*?')  
+FROM   emp   WHERE  deptno = 20; 
+ 
+문>EMP 테이블에서 이름의 첫글자가 'K' 보다 크고 'Y' 보다 작은 사원의 
+사원번호, 이름, 업무, 급여, 부서번호를 조회한다. 결과는 이름순으로 정렬하여라. 
+ SELECT empno, ename, job, sal, deptno    
+FROM emp   
+WHERE SUBSTR(ename, 1, 1) > 'K' AND  SUBSTR(ename, 1, 1) < 'Y'     
+ORDER BY ename; 
+
+LEFT('문자열',개수) - 문자열 중 왼쪽에서 개수만큼을 추출.
+RIGHT('문자열',개수) - 문자열 중 오른쪽에서 개수만큼을 추출. 
+MID('문자열',시작위치,개수) - 문자열 중 시작위치부터 개수만큼 출력 
+SUBSTRING('문자열',시작위치,개수) - 문자열 중 시작위치부터 개수만큼 출력 
+LCASE('문자열') or LOWER('문자열') - 소문자로 바꾼다. 
+UCASE('문자열') or UPPER('문자열') - 대문자로 바꾼다. 
+REVERSE('문자열') - 문자열을 반대로 나열한다
+ELT는 위치 번째의 문자를 반환합니다.
+FIELD는 찾을 문자열의 위치를 찾아서 있으면 위치를, 없으면 0을 반환합니다. 
+FIND_IN_SET은 찾을 문자열을 문자열 리스트에서 찾아서 위치를 반환합니다. 문자열 리스트는 콤마(,)로 구분되어 있어야 하며 공백이 없어야 합니다. 
+LOCATE는 INSTR와 동일하지만 파라미터의 순서가 반대로 되어있습니다. POSITION()과 동일한 함수입니다.
+BIT_LENGTH(문자열) : 할당된 Bit 크기 반환
+CHAR_LENGTH(문자열) : 문자의 개수 반환
+LENGTH(문자열) : 할당된 Byte 수를 반환
+SELECT ELT(2, 'a', 'b', 'c'),     -- ELT(위치, 문자열1, 문자열2, ...)
+          FIELD('b', 'a', 'b', 'c'), -- FIELD(찾을 문자열, 문자열1, 문자열2, ...)
+          FIND_IN_SET('b', 'a,b,c'), -- FIND_IN_SET(찾을 문자열, 문자열 리스트)
+          INSTR('abcd', 'b'), -- INSTR(기준 문자열, 부분 문자열)
+          LOCATE('b', 'abcd'); -- LOCATE(부분 문자열, 기준 문자열);
+
+
+SELECT FORMAT(123.1234, 2); 
+SELECT BIN(31),  HEX(31), OCT(31); 
+SELECT INSERT('가나다라마', 2, 3, '@@@'); 
+SELECT LEFT('가나다라마바', 3), RIGHT('가나다라마바', 3); 
+SELECT REPEAT('abc', 3)  
+SELECT REVERSE ('가나다'); 
+
+
+number function : https://dev.mysql.com/doc/refman/8.0/en/numeric-functions.html #########
+ 
+select round(123.456, 2), round(123.456, 0), round(123.456, -2)
+from dual;  --반올림
+
+select trunc(123.456, 2), trunc(123.456), trunc(123.456, -2)
+from dual; --절삭
+
+select ceil(123.456), floor(123.456), mod(100, 7)
+from dual;
+
+SELECT  POWER( 2, 10) ,   CEIL (3.7)  ,  FLOOR (3.7) 
+from dual;
+ 
+ABS(숫자) - 절대값 출력. 
+FLOOR(숫자) - 값보다 작은 정수 중 가장 큰 수[실수를 무조건 버림(음수일 경우는 제외)].
+ROUND(숫자,자릿수) - 숫자를 소수점 이하 자릿수에서 반올림.(자릿수는 양수,0,음수를 갖을 수 있다.) 
+TRUNCATE(숫자,자릿수) - 숫자를 소수점 이하 자릿수에서 버림. 
+POW(X,Y) or POWER(X,Y) - X의 Y승 
+MOD (분자, 분모) - 분자를 분모로 나눈 나머지를 구한다.(연산자 %와 같음) 
+GREATEST(숫자1,숫자2,숫자3...) - 주어진 수 중 제일 큰 수 리턴. 
+LEAST(숫자1,숫자2,숫자3...) - 주어진 수 중 제일 작은 수 리턴. 
+ 
+
+SELECT ABS(-100);
+SELECT CEILING(3.7), FLOOR(3.7), ROUND(3.7);
+SELECT MOD(14, 3), 14 % 3, 14 MOD 3 
+SELECT POW(3,2), SQRT(16) ;    --SQRT는 숫자의 제곱근 값을 구합니다
+SELECT RAND(),  FLOOR(1 + (RAND() * 6)); 
+SELECT SIGN(-100) , SIGN(100) , SIGN(0) ;
+SELECT CONV(100, 10, 2)  ;
+SELECT GREATEST(3,5,8,10, 1000,500,300), 
+          LEAST(3,5,8,10, 1000,500,300);
+#10진수에서 2진수, 8진수, 16진수로 진법 데이터 형변환 
+SELECT CONV(100, 2, 10) ;  
+SELECT CONV(100, 8, 10) ;
+
+문> emp테이블에서 사번이 홀수인 사원만 검색
+select empno
+from emp
+where mod(empno , 2)=1;
+
+
+https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html ############################
+# 집계 함수는 null을 집계에 포함하지 않습니다.
+COUNT(필드명) - NULL 값이 아닌 레코드 수를 구한다. 
+SUM(필드명) - 필드명의 합계를 구한다. 
+AVG(필드명) - 각각의 그룹 안에서 필드명의 평균값을 구한다. 
+MAX(필드명) - 최대값을 구한다. 
+MIN(필드명) - 최소값을 구한다. 
+stddev(필드명)
+variance(필드명)
+std(필드명)
+select count(*), count(comm), count(distinct deptno), count(deptno)
+from emp;
+
+select sum(sal), sum(comm) from emp;
+select avg(comm), avg(sal) from emp;
+select min(sal), max(sal), min(hiredate), max(hiredate), min(ename), max(ename) from emp;
+select std(sal), stddev(sal), variance(sal),from emp;
+
+
+
+#날짜 관련 함수 
+NOW() or SYSDATE() or CURRENT_TIMESTAMP() - 현재 날짜와 시간 출력 
+CURDATE() or CURRENT_DATE() -현재 날짜 출력 
+CURTIME() or CURRENT_TIME() -현재 시간 출력 
+DATE_ADD(날짜,INTERVAL 기준값) -날짜에서 기준값 만큼 더한다. 
+※ 기준값 : YEAR, MONTH, DAY, HOUR, MINUTE, SECOND 
+ DATE_SUB(날짜,INTERVAL 기준값) -날짜에서 기준값 만큼 뺸다. 
+YEAR(날짜) -날짜의 연도 출력. 
+MONTH(날짜) -날짜의 월 출력. 
+MONTHNAME(날짜) -날짜의 월을 영어로 출력. 
+DAYNAME(날짜) -날짜의 요일일 영어로 출력. 
+DAYOFMONTH(날짜) -날짜의 월별 일자 출력. 
+DAYOFWEEK(날짜) -날짜의 주별 일자 출력(월요일(0),화요일(1)...일요일(6)) 
+WEEKDAY(날짜) -날짜의 주별 일자 출력(월요일(0),화요일(1)...일요일(6)) 
+DAYOFYEAR(날짜) -일년을 기준으로 한 날짜까지의 날 수. 
+WEEK(날짜) -일년 중 몇 번쨰 주. 
+FROM_DAYS(날 수) --00년 00월 00일부터 날 수 만큼 경과한 날의 날짜 출력. 
+TO_DAYS(날짜) --00 년 00 월 00일 부터 날짜까지의 일자 수 출력. 
+DATE_FORMAT(날짜,'형식') : 날짜를 형식에 맞게 출력 
+
+SELECT CURDATE(), CURTIME(), NOW(), SYSDATE();
+
+SELECT ADDDATE('2020-01-01', INTERVAL 31 DAY),  SUBDATE('2020-01-01', INTERVAL 31 DAY);
+
+SELECT ADDTIME('2020-01-01 21:20:00', '1:0:0'), SUBTIME('2020-01-01 21:20:00', '1:0:0');
+
+SELECT YEAR(NOW()), MONTH(NOW()), DAYOFMONTH(NOW()),
+       HOUR(NOW()), MINUTE(NOW()), SECOND(NOW()), MICROSECOND(NOW));
+
+SELECT DATE(NOW()), TIME(NOW());
+
+SELECT DATEDIFF('2020-1-5', '2020-1-1'),  
+        TIMEDIFF('14:30:00', '06:30:00');  
+
+SELECT DAYOFWEEK(NOW()), MONTHNAME(NOW()), DAYOFYEAR(NOW());
+
+SELECT LAST_DAY('2020-02-04');
+
+SELECT TIME_TO_SEC('10:53:10');
+
+null처리 함수 IFNULL, CASE, COALESCE ##################################
+#SELECT IFNULL(Column명, "Null일 경우 대체 값") FROM 테이블명; 
+SELECT IFNULL(comm, "No Commission") as commission
+FROM emp;     ----?
+SELECT IFNULL(comm, 0) as commission
+FROM emp; 
+
+#Null 처리는 사실 IF 함수와 IS NULL 조건으로도 가능하다.
+SELECT IF(IS NULL(comm), "No Commission", comm) as Commission
+FROM emp;
+
+#CASE : Column 값을 조건식을 통해 True, False를 판단하여 조건에 맞게 Column값을 변환할 때 사용하는 함수
+CASE 
+    WHEN 조건식1 THEN 식1
+    WHEN 조건식2 THEN 식2
+    ...
+    ELSE 조건에 맞는경우가 없는 경우 실행할 식
+END
+
+SELECT 
+    CASE
+        WHEN comm IS NULL THEN "No Commission"
+        ELSE comm
+    END as Commission
+FROM emp;
+
+
+#COALESCE는 지정한 표현식들 중에 NULL이 아닌 첫 번째 값을 반환한다.
+모든 DBMS에서 사용가능
+#SELECT COALESCE(Column명1, Column명1이 NULL인 경우 대체할 값)
+FROM 테이블명
+#SELECT COALESCE(Column명1, Column명2, Column명3, Column명4)
+FROM 테이블명
+
+SELECT COALESCE(comm, "No Commission")
+FROM emp;
+
+문> EMP 사원의 담당 업무가 ANALYST 인 경우 급여는 10% 증가, CLERK인 경우 급여는 20% 증가, MANAGER인 경우 30% 증가, PRESIDENT인 경우 40% 증가, SALESMAN인 경우 50% 증가, 그 외엔 기존 급여값으로 나오도록 조회한다.
+SELECT empno, ename, sal, job,
+	 CASE job WHEN 'ANALYST' THEN sal*1.1 
+ 		WHEN 'CLERK' THEN sal*1.2
+ 		WHEN 'MANAGER' THEN sal*1.3 
+		 WHEN 'PRESIDENT' THEN sal*1.4
+		 WHEN 'SALESMAN' THEN sal*1.5
+ 		ELSE sal  END salary
+ FROM emp ;
+
+문> 사원번호, 이름 , 급여, 급여의 세금을 출력하시오
+급여가 1000미만이면 0
+급여가 1000이상~2000미만이면 급여의 3%
+급여가 2000이상~3000미만이면 급여의 6%
+급여가 3000이상~4000미만이면 급여의 9%
+급여가 4000이상이면 급여의 12% 
+elect empno, ename, sal, 
+        case when sal<1000 then 0
+            when sal<2000 then sal*0.03
+            when sal<3000 then sal*0.06
+            when sal<4000 then sal*0.09
+            else sal*0.12 end "Tax"
+from emp;
+
+
+
+#DB에 connection한 user 정보 반환
+SELECT USER(), CURRENT_USER(), SESSION_USER();
+
+#현재 선택(USE)된 데이터베이스를 반환
+SELECT DATABASE(), SCHEMA();
+
+#최근에 했던 SELECT문의 조회 행 개수를 반환
+SELECT ROW_COUNT();
+--ROW_COUNT()는 제일 최근에 했던 INSERT, UPDATE, DELETE문에서 실행했던 행의 개수를 구합니다. SELECT문은 -1을 반환하고 CREATE, DROP문은 0을 반환합니다.
+
+# MySQL의 버전를 반환 
+SELECT VERSION();
+
+#쿼리의 실행을 초동안 멈춥니다. 
+SELECT SLEEP(5); 
+
+
+select ~ column, 표현식, 그룹함수표현식, ..  --4
+from ~                                                --1
+[where ~]                                             --2   filter 조건
+[group by ~]                                         --3   컬럼, 표현식
+[order by ~]                                          --5
+
+문> EMP 테이블에서 부서별로 인원수, 평균 급여, 최저 급여, 최고 급여, 급여의 합을 구하여 출력하여라. (부서번호, 인원수, 평균 급여, 최저 급여, 최고 급여, 급여의 합)
+SELECT deptno, count(*),  avg(sal), min(sal), max(sal), sum(sal)
+ FROM emp; 
+
+SELECT deptno, count(*),  avg(sal), min(sal), max(sal), sum(sal)
+ FROM emp
+group by deptno;
+
+
+문> 각 부서별로 인원수, 급여의 평균, 최저 급여, 최고 급여, 급여의 합을 구하여 급여의 합이 많은 순으로 출력하여라
+SELECT deptno, count(*),  avg(sal), min(sal), max(sal), sum(sal)
+ FROM emp
+group by deptno
+order by 7 desc;
+
+SELECT deptno, count(*),  avg(sal), min(sal), max(sal), sum(sal)
+ FROM emp
+group by deptno
+order by sum(sal) desc;
+
+#group by절에 1차 그룹핑 컬럼, 2차 그룹핑 컬럼, ...
+
+문> 부서별 평균급여가 2500이상인 부서와 평균급여 출력
+select ~ column, 표현식, 그룹함수표현식, ..   --5
+from ~                                                --1
+[where ~]                                             --2   filter 조건
+[group by ~]                                         --3   컬럼, 표현식
+[having 그룹함수 조건]                            --4
+[order by ~]                                          --6
+
+select deptno, avg(sal)
+from emp
+group by deptno
+having avg(sal) >=2500
+order by 2 desc;
+
+
+문> EMP 테이블에서 부서 인원이 4명보다 많은 부서의 부서번호, 인원수,  
+급여의 합을 출력하여라.
+SELECT deptno, count(*), sum(sal)
+FROM emp
+GROUP BY deptno
+HAVING count(*) > 4;
+
+문>  EMP 테이블에서 급여가 최대 2900 이상인 부서에 대해서 부서번호, 평균 급여, 급여의 합을 조회한다
+SELECT deptno, avg(sal), sum(sal)
+FROM emp
+GROUP BY deptno
+HAVING max(sal) >= 2900;
+
+문>  emp테이블에서 관리자(mgr)가 없는 사원은 제외하고, 사원들의
+부서(deptno)별 평균급여(sal)가 2000미만인 부서번호와 평균급여를 출력하시오 
+단, 평균급여의 내림차순으로 출력하시오
+select deptno, avg(sal)
+from emp
+where mgr is not null
+group by deptno
+having avg(sal) < 2000
+order by 2 desc;
+
+문> 부서별 급여 평균중에서 최고 평균 급여를 검색하시오 
+--그룹함수도 nested 사용 가능? mysql에서 안됨 join 또는 subquery로 해결....
+select  max(avg(sal))
+from emp 
+group by deptno; 
+ 
+join#################################################################
+(parent테이블의 pk컬럼을 참조하는 child테이블의 fk컬럼)
+참조관계의 2개이상의 테이블로부터 
+pk컬럼 = fk컬럼 조인조건
+equi join, inner join
+
+문> emp 사원들에 대해서 사번, 이름, 부서번호, 부서이름을 조회
+select empno, ename, deptno, dname
+from emp, dept;  ---?
+
+select emp.empno, emp.ename, emp.deptno, dept.dname
+from emp, dept;
+
+select a.empno, a.ename, a.deptno, b.dname
+from emp  a, dept   b;   --논리적 오류 발생
+----56rows (14rows * 4rows)   조인 조건 누락으로  cartesian product,  cross join(sql3표준)
+
+select a.ename, a.deptno, b.dname, b.loc
+from emp  a , dept  b
+where a.deptno= b.deptno;  --조인 조건
+
+select a.ename, a.deptno, b.dname, b.loc
+from emp  a  inner join dept  b on a.deptno= b.deptno; 
+
+select a.ename, a.deptno, b.dname, b.loc
+from emp  a   join dept  b on a.deptno= b.deptno; 
+
+describe salgrade 
+select * from salgrade;  --등급 , 급여 하한값, 급여 상한값
+
+#non-equi join
+문> 사원별로 급여와 급여의 등급을 조회결과 생성...
+select a.empno, a.ename, a.sal, b.grade
+from emp a, salgrade b
+where a.sal between b.losal and b.hisal;    
+
+select a.empno, a.ename, a.sal, b.grade
+from emp a join salgrade b  on a.sal between b.losal and b.hisal ;  
+
+문> 사원번호, 사원이름, 관리자번호, 관리자이름 조회결과 생성
+#self join - 자기 참조가 가능한 테이블(PK:empno <- FK:mgr이 존재)에서만 수행됨 
+select a.empno, a.ename, a.mgr, b.ename
+from emp a, emp b
+where a.mgr = b.empno;
+
+select a.empno, a.ename, a.mgr, b.ename
+from emp a  join emp b  on a.mgr = b.empno;  
+
+※ n개의 테이블을 조인할때 최소 조인 조건은 n-1개의 조건을 선언해야 합니다.
+select ~~~~~
+from table1 a join table2  b  on  a.column = b.column
+join table3  c  on  a.column = c.column  ;  -- join table3  c  on  b.column = c.column  ;  
+
+
+#조인 컬럼값이 null인경우 PK와 FK equi 조인 조건에서는 조인되지 못해서 조인 결과에 누락됨
+=> 조인 결과로 가려오려면 outer join을 수행해야 함
+insert into emp (empno, ename)
+values (7000, '홍길동');
+commit;
+
+문>부서를 아직 배정받지 못한 사원을 포함해서 사원들의 부서번호와 부서이름을 출력
+select a.ename, a.deptno, b.dname, b.loc
+from emp  a , dept  b
+where a.deptno= b.deptno(+);   ---mysql에서는 지원안됨, oracle은 지원됨
+
+select a.ename, a.deptno, b.dname, b.loc
+from emp  a  left outer  join dept  b on a.deptno= b.deptno; 
+
+문> 부서별 사원정보를 출력 (40번 부서 정보)
+select  b.deptno, b.dname, a.empno, a.ename
+from emp  a right outer join  dept  b  on  a.deptno = b.deptno
+order by 1 asc;
+
+문> 7000번 사원 레코드와   40번 부서 정보 레코드를 모두 조인 결과로 생성
+select  b.deptno, b.dname, a.empno, a.ename
+from emp  a  full outer join  dept  b  on  a.deptno = b.deptno
+order by 1 asc;  ----mysql지원?
+
+select b.deptno, b.dname, a.empno, a.ename, b.loc
+from emp  a  left outer join  dept  b on a.deptno= b.deptno
+union 
+select  b.deptno, b.dname, a.empno, a.ename, b.loc
+from emp  a right outer join  dept  b  on  a.deptno = b.deptno
+order by 1 asc;  
+
+
+select  b.deptno, b.dname, a.empno, a.ename 
+from emp  a cross join dept  b ;
+
+subquery########################################################
+하나의 SQL문안에 포함되는 select문 
+
+select ~                        --main query, outer query
+from 
+where  컬럼 연산자   (select ~           ---subquery, nested query, inner query, --먼저 1번 수행
+                             from  ~ 
+                            where  ~);
+
+select절, from절, where절,  having절, order by절
+insert의 values절 , insert into절, update의 where절, update set절, delete의 where절 
+
+single row subquery는 single row operator와 함께 사용 : >, >=, =, <, <=, <>
+multiple row subquery는 multiple row operator 와 함께 사용 : any, all, in
+scalar subquery는 1레코드의 1컬럼값 리턴
+multiple column subquery
+co-related subuqery 
+
+
+문>  7566번 사원보다 급여를 많이 받는 사원의 이름, 급여를 조회하라.
+select *
+from emp
+where sal > (7566번 사원의 급여)
+
+SELECT ename,sal
+FROM EMP
+WHERE sal > ( SELECT sal
+ 	      FROM EMP
+ 	      WHERE empno=7566);
+
+문> EMP 테이블에서 사원번호가 7521인 사원과 업무가 같고 급여가 7934인 사원보다 많은 사원의 사원번호, 이름, 담당업무, 입사일자, 급여를 조회하라
+--where절에 조건만다 subquery 선언 가능
+SELECT empno, ename, job, hiredate, sal
+FROM emp
+WHERE job = (SELECT job FROM emp
+	      WHERE empno = 7521)
+ AND sal > (SELECT sal FROM emp
+ 	   WHERE empno = 7934);
+
+문>EMP 테이블에서 급여를 제일 많이 받는 사원의 이름, 부서번호, 급여, 입사일을 조회하라  
+--subquery에 그룹함수 사용 가능
+SELECT ename,deptno,sal, hiredate
+ FROM EMP
+ WHERE sal = ( SELECT MAX(sal) 
+                    FROM emp);
+
+
+문> 각 부서별 최대 급여를 받는 사원의 사원번호, 이름, 급여,부서번호를 출력
+ ---multiple row subquery
+SELECT empno ,ename ,sal, deptno
+ FROM emp
+ WHERE sal  in (  SELECT MAX(sal)    ---5000,3000,2950
+ 	        FROM emp
+	        GROUP BY deptno)
+
+--multiple column subquery
+SELECT empno ,ename ,sal, deptno
+ FROM emp
+ WHERE (deptno, sal)  in (  SELECT deptno, MAX(sal)     
+ 	                      FROM emp
+	                      GROUP BY deptno)
+
+과제############################################################
+문제1) EMP 테이블에서 scott의 사원번호, 성명, 담당업무(소문자로), 부서번호를 출력하여라.
+
+문제2) EMP 테이블에서 scott의 사원번호, 성명, 담당업무, 부서번호를 출력하여라.
+
+문제3) DEPT 테이블에서 컬럼의 첫 글자들만 대문자로 변화하여 모든 정보를 출력하여라.
+
+문제4) EMP 테이블에서 이름의 첫글자가 'K'보고 크고 'Y'보다 작은 사원의 사원번호, 이름, 업무, 급여, 부서번호를 출력하여라.
+
+문제5) EMP 테이블에서 부서가 20번인 사원의 사원번호, 이름, 이름의 자릿수, 급여, 급여의 자릿수를 출력하여라.
+
+문제6) EMP 테이블에서 이름 중 'L'자의 위치를 출력하여라.
+
+문제7) EMP 테이블에서 10번 부서의 사원에 대하여 담당 업무 중 좌측에 'A'를 삭제하고 급여 중 좌측의 1을 삭제하여 출력하여라.
+
+문제8) EMP 테이블에서 10번 부서의 사원에 대하여 담당 업무 중 우측에 'T'를 삭제하고 급여 중 우측의 0을 삭제하여 출력하여라.
+
+문제9) EMP 테이블에서 성명을 소문자로 바꾸어 출력하여라.
+
+문제10) EMP 테이블에서 JOB에 'A'를 '$'로 바꾸어 출력하여라.
+
+문제11) EMP 테이블에서 급여를 30으로 나눈 나머지를 구하여 출력하여라.
+
+문제12) EMP 테이블에서 현재까지의 근무일수가 몇 주 몇 일인가를 출력하여라.  단, 근무일수가 많은 사람순으로 출력하여라.
+
+문제13) EMP 테이블에서 10번 부서원이 현재까지의 근무 월수를 계산하여 출력하여라.
+
+문제14) EMP 테이블에서 10번 부서원의 입사 일자로부터 5개월이 지난 후 
+ 날짜를 계산하여 출력하여라.
+
+문제15) EMP 테이블에서 10번 부서원의 입사 일자로부터 돌아오는 금요일을 계산하여 출력하여라.
+
+
+문제16) EMP 테이블에서 입사한 달의 근무 일수를 계산하여 출력하여라. 
+    단, 토요일과 일요일도 근무일수에 포함한다.
+
+
+문제17) EMP 테이블에서 10번 부서 중 입사한 달의 ROUND과 TRUNCATE 함수를 비교합니다.

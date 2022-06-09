@@ -33,3 +33,26 @@ SELECT INSERT('가나다라마', 2, 3, '@@@');
 SELECT LEFT('가나다라마바', 3), RIGHT('가나다라마바', 3);
 SELECT REPEAT('abc', 3);
 SELECT REVERSE ('가나다');
+
+SELECT IFNULL(COMM, "No Commission") as commission
+FROM emp;
+SELECT IFNULL(comm, 0) as commission
+FROM emp;
+
+SELECT IF(ISNULL(comm), "No Commission", comm) as Commission
+FROM emp;
+
+SELECT JOB, ENAME, SAL,
+	CASE JOB WHEN 'ANALYST' THEN ROUND(SAL*1.1, 2)
+			WHEN 'CLERK' THEN ROUND(SAL*1.2, 2)
+            WHEN 'MANAGER' THEN ROUND(SAL*1.3, 2)
+            WHEN 'PRESIDENT' THEN ROUND(SAL*1.4, 2)
+            WHEN 'SALESMAN' THEN ROUND(SAL*1.5, 2)
+            ELSE ROUND(SAL, 2) END salary
+FROM EMP;
+
+-- EMP 테이블에서 부서 인원이 4명보다 많은 부서의 부서번호, 인원수, 급여의 합을 출력하여라.
+SELECT DEPTNO AS 부서번호, COUNT(DEPTNO) AS 인원수, SUM(SAL) AS 급여의합
+FROM EMP
+GROUP BY DEPTNO
+HAVING COUNT(DEPTNO) > 4;
