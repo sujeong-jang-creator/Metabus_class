@@ -101,6 +101,14 @@ SELECT  DEPTNO, ENAME, DATE(HIREDATE) AS 입사일, CASE DAYOFWEEK(HIREDATE)
 FROM EMP
 WHERE DEPTNO = 10;
 
+select ename, next(date(HIREDATE),'friday')
+from emp
+where deptno = 10;
+
+SELECT hiredate, NEXT_DAY(hiredate, 6)
+FROM   emp
+WHERE  deptno=10;
+
 -- 문제16) EMP 테이블에서 입사한 달의 근무 일수를 계산하여 출력하여라. 단, 토요일과 일요일도 근무일수에 포함한다.
 SELECT DEPTNO, ENAME,
 	TIMESTAMPDIFF(DAY, DATE(HIREDATE), CURRENT_DATE()) AS 근무일수

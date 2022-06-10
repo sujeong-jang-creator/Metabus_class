@@ -1,0 +1,5 @@
+node.js
+chrome V8 Javascript 엔진으로 빌드된 Javascript 런타임
+노드는 서버 애플리케이션을 실행하는데 제일 많이 사용합니다.
+이벤트 기반, 논 블로킹 I/O 모델을 구현하고 있습니다.
+

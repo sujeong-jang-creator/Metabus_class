@@ -1,0 +1,80 @@
+use world;
+create table if not exists dept (
+   deptno  int(11)  not null,
+   dname  varchar(14)  default null,
+   loc  varchar(13) default null,
+   primary key (deptno)
+) engine=innodb default charset=utf8;
+
+describe dept   --dept테이블 구조 확인
+
+insert into dept (deptno, dname, loc) 
+values (10, 'ACCOUNTING', 'NEW YORK'), 
+(20, 'RESEARCH', 'DALLAS'), 
+(30, 'SALES', 'CHICAGO'), 
+(40, 'OPERATIONS', 'BOSTON');
+--oracle db는 insert into ~ values구문으로는 1row만 추가
+--mysql, ms sql server, ..db에서는  insert into ~ values구문으로는 m rows 추가 가능
+
+commit;   --영속성 부여 (db구성 file에 저장)
+
+select * from dept;
+
+CREATE TABLE  if not exists  EMP (
+ EMPNO     int(11)    not null, 
+ ENAME     VARCHAR(10)   default null,
+ JOB         VARCHAR(9)   default null,
+ MGR        int(11)   default null,
+ HIREDATE datetime   default null,
+ SAL         double   default null,
+ COMM    double   default null,
+ DEPTNO  int(11)    default null,
+  primary key  (EMPNO )   
+) engine=innodb  default  charset=utf8;
+
+
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO) VALUES
+(7369, 'SMITH', 'CLERK', 7902, '1980-12-17 00:00:00', 800, NULL, 20),
+(7499, 'ALLEN', 'SALESMAN', 7698, '1981-02-20 00:00:00', 1600, 300, 30),
+(7521, 'WARD', 'SALESMAN', 7698, '1981-02-22 00:00:00', 1250, 500, 30),
+(7566, 'JONES', 'MANAGER', 7839, '1981-04-02 00:00:00', 2975, NULL, 20),
+(7654, 'MARTIN', 'SALESMAN', 7698, '1981-09-28 00:00:00', 1250, 1400, 30),
+(7698, 'BLAKE', 'MANAGER', 7839, '1981-05-01 00:00:00', 2850, NULL, 30),
+(7782, 'CLARK', 'MANAGER', 7839, '1981-06-09 00:00:00', 2450, NULL, 10),
+(7788, 'SCOTT', 'ANALYST', 7566, '1987-04-19 00:00:00', 3000, NULL, 20),
+(7839, 'KING', 'PRESIDENT', NULL, '1981-11-17 00:00:00', 5000, NULL, 10),
+(7844, 'TURNER', 'SALESMAN', 7698, '1981-09-08 00:00:00', 1500, 0, 30),
+(7876, 'ADAMS', 'CLERK', 7788, '1987-05-23 00:00:00', 1100, NULL, 20),
+(7900, 'JAMES', 'CLERK', 7698, '1981-12-03 00:00:00', 950, NULL, 30),
+(7902, 'FORD', 'ANALYST', 7566, '1981-12-03 00:00:00', 3000, NULL, 20),
+(7934, 'MILLER', 'CLERK', 7782, '1982-01-23 00:00:00', 1300, NULL, 10);
+
+commit;
+
+
+alter table EMP  
+add constraint FK_EMP FOREIGN KEY (DEPTNO) 
+REFERENCES DEPT (DEPTNO)
+ON DELETE SET NULL ON UPDATE CASCADE;
+
+
+CREATE TABLE IF NOT EXISTS SALGRADE (
+  GRADE double DEFAULT NULL,
+  LOSAL double DEFAULT NULL,
+  HISAL double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+INSERT INTO SALGRADE (GRADE, LOSAL, HISAL) VALUES
+(1, 700, 1200),
+(2, 1201, 1400),
+(3, 1401, 2000),
+(4, 2001, 3000),
+(5, 3001, 9999);
+
+commit;
+
+
+select * from emp;
+select * from dept;
+select * from salgrade;
