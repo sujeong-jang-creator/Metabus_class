@@ -1,0 +1,141 @@
+# Node.js의 express framework 이란?
+
+- express 는 node.js를 위한 빠르고 개방적이며 간결한 웹 애플리케이션 프레임워크
+
+* 주요기능
+
+- HTTP 통신 요청(Request; GET, POST, DELETE 등)에 대한 핸들러를 만든다.
+
+- 템플릿에 데이터를 넣어 응답(response)을 만들기 위해 view의 렌더링 엔진과 결합(integrate)한다. 
+
+- 접속을 위한 포트나 응답 렌더링을 위한 템플릿 위치같은 공통 웹 어플리케이션 세팅을 한다. 
+
+- 핸들링 파이프라인(reqest handling pipeline) 중 필요한 곳에 추가적인 미들웨어 처리 요청을 추가한다.
+
+# express framework 특징
+
+- 익스프레스는 사용자에게 최소한의 프레임워크를 제공하고 사용자는 익스프레스의 기능 중 필요한 것만 추가하고 필요하지 않다면 제거할 수 있다.
+
+- 불필요한 기능을 떼어내거나 요구 사항에 맞지 않는 기능을 대체할 일 없이 필요한 기능만 추가하면 되서 편리하다.
+
+# express framework 구성
+
+myweb
+├── app.js  (서버역할, node 서버의 entry point 진입점)
+├── bin 
+│   └── www (서버를 실행시키는 스크립트 http, 모듈에 express 모듈을 연결
+│           프로젝트가 실행되는 포트를 지정)
+├── package.json    (프로젝트의 중요 설정, 실행 명령어, 사용 패키지 목록)
+├── public  (클라이언트들이 접근 가능한 폴더, 이미지, 자바스크립트, css 저장관리)
+│   ├── images
+│   ├── javascripts
+│   └── stylesheets
+│       └── style.css
+├── routes  (주소별 라우터가 저장, 서버의 로직 저장)
+│       요청이 path에 들어오면 요청에 맞게 보내줌.
+│   ├── index.js
+│   └── users.js
+└── views   (템플릿 html 저장, jade, ejs 로 만든 템플릿 파일)
+    ├── error.pug
+    ├── index.pug
+    └── layout.pug
+
+7 directories, 9 files
+
+####################################################################################################
+
+myweb
+   |---app.js (서버 역할, node 서버의 entry point 진입점)
+   |---bin
+         |---www  (서버를 실행시키는 스크립트, http모듈에 express모듈을 연결, 프로젝트가 실행되는 포트를 지정)
+   |---package.json (프로젝트의 중요 설정, 실행 명령어, 사용 패키지 목록)
+   |---public  (클라이언트들이 접근 가능한 폴더, 이미지, 자바스크립트, css  저장관리)
+           |--- images
+           |--- javascripts
+           |--- stylesheets
+                      |---style.css
+   |---routes (주소별 라우터가 저장, 서버의 로직 저장)
+           |--- index.js
+           |--- users.js
+   |---views (템플릿 html 저장, jade, ejs 로 만든 템플릿 파일)
+
+app.js 소스 내용 설명 ##########################################
+//error 객체 생성 후 에러 처리 핸들러로 넘김
+var createError = require('http-errors');
+// http 모듈만 사용해서 서버를 구성할 수도 있지만, 이 경우엔 직접 설정해야 
+//하는것들이 많아진다. 이를 해결하기 위한 모듈
+var express = require('express');
+//파일/폴더/디렉터리 등의 경로를 편리하게 설정할 수 있는 기능을 제공
+var path = require('path');
+//요청된 쿠키를 쉽게 추출할 수 있도록 해주는 미들웨어
+var cookieParser = require('cookie-parser');
+//로그를 남겨주는 모듈 client에서 요청한 메소들나 상태코드
+var logger = require('morgan');
+// 이미지, css 파일 및 javascript 파일과 같은 정적 파일을 제공하려면 express의 기본 제공
+// 미들웨어 함수인 express. 사용함
+var static = require('serve-static');
+
+
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+
+var app = express(); // 서버 생성
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+
+app.use(logger('dev'));
+//json으로 이루어진 Request Body를 받았을 경우, 요청값을 제대로 받아오지 못하는 문제가 발생한다.
+//body-parser 모듈 사용(4.16 이전 버전).
+//express.json() 사용
+app.use(express.json());
+//extended: false로 옵션을 주면 NodeJs에 기본으로 내장된 querystring모듈을 사용합니다.
+//extended: true를 하면 추가로 설치가 필요한 qs모듈을 사용합니다.
+//.urlencoded()은 x-www-form-urlencoded형태의 데이터를 해석
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+// 라우터 등록
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+
+/*
+에러 처리 핸들러를 등록하기 위해선 다른 app.use() 및 라우트 호출을 
+정의한 후에 마지막으로 정의해야 합니다.
+등록되지 않은 path로 요청이 왔으면 404 에러 객체 생성 후 
+ 에러 처리 핸들러로 넘김
+catch 404 and forward to error handler
+ */
+app.use(function(req, res, next) {
+  next(createError(404));
+});
+
+// error handler
+//에러 처리 핸들러는 기존 미들웨어와 다르게 4개의 파라미터 즉, err, req, res, next를 가진다
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
+
+module.exports = app;
+
+###############################################################################
+
+session을 사용하기 위한 express-session 모듈의 세션 옵션 :
+proxy - 프록시 설정 (undefined, true, false)
+resave - 재저장 옵션 (세션에 요청이 들어간 후에 세션에 변동이 있든 없든 무조건 저장옵션. 기본값은 true)
+saveUninitialized - 세션이 세션 store에 저장되기 전에 uninitialized 된 상태로 만들어서 저장
+secret - 비밀키를 저장, (비밀 키를 이용해서 session id를 암호화해서 관리)
+cookie - 세션과 함께 쿠키를 사용하기 위한 설정 (secure, maxAge등)
+
+session.regenerate()
+session.destroy()
+session.reload()
+session.save()

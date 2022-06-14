@@ -1,0 +1,12 @@
+객체지향 언어 : 
+객체 단위로 class -> 완전 조립 가능한 형태 (컴포넌트)
+객체는 속성과 그 속성을 처리하는 기능 메서드(동작)
+컴포넌트(객체)의 상태값을 속성(props, states)에 저장
+
+ReactJS는 html포함 JSX(JavaScript XML) 문법과 단방향으로 데이터를 바인딩을 사용
+Virtual DOM 으로 처리하기 때문에 웹 어플리케이션 성능이 좋음
+
+npm install --save-dev react react-dom
+npm install --save bootstrap react-bootstrap
+npm install --global create-react-app
+npx create-react-app mysite
