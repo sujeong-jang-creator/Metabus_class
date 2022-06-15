@@ -5,8 +5,31 @@
 
 ReactJS는 html포함 JSX(JavaScript XML) 문법과 단방향으로 데이터를 바인딩을 사용
 Virtual DOM 으로 처리하기 때문에 웹 어플리케이션 성능이 좋음
+JSX(JavaScript XML)는 자바스크립트 확장 문법 (웹 브라우저에 출력될 UI html 요소 리턴)
 
 npm install --save-dev react react-dom
 npm install --save bootstrap react-bootstrap
 npm install --global create-react-app
 npx create-react-app mysite
+
+public : 정적 파일 저장
+src : class 또는 function형태로 정의한 컴포넌트가 파일로 (.js)저장
+node_modules : 의존 node 모듈, 패키지 저장
+package.json : 프로젝트의 설정 정보 저장된 파일
+
+dependencies : 
+react는 react 앱 주요 라이브러리
+react-dom 브라우저의 DOM과 동작할 수 있도록 만들어 주는 도구
+react-scripts build 관련 도구를 사용하기 위한 스크립트
+web_vitals react 앱 성능 분석
+
+App.js는 루트 컴포넌트 
+
+create-react-app 템플릿으로 프로젝트 생성하면 App.js의 html코드를 index.html에 그려줍니다.
+App.js의 html 코드에 css를 적용하려면 App.js와 동일한 폴더에 저장된 App.css를 import 합니다.
+
+컴포넌트(Component) : 다른 부분에 이식하거나 재사용하기 위한 특정 코드 블럭 단위로
+react에서는 function또는 class로 정의하고 파일 단위로 저장하며, 필요한 위치에서 import해서 사용합니다.
+
+React의 Component는 lifecycle(Component가 생성, 변경, 소멸되는 과정)이 있습니다.
+render(constructor)

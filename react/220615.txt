@@ -1,0 +1,116 @@
+ReactJS : 
+FrontEnd 개발 JavaScript 라이브러리
+선언형 프로그래밍 방식 (과정 기술 X)
+컴포넌트 기반 (재사용성)
+JSX 문법 (자바스크립트와 HTML을 동시에 사용하며, 
+HTML에 자바스크립트의 변수들을 바로 사용할 수 있는 일종의 템플릿 언어 Template)
+Virtual DOM(DOM 조작이 발생하면 메모리상에 생성한 기상 돔에 모든 연산을
+수행한 후, 실제 DOM을 갱신하여 리플로우/리페인트의 연산을 최소화)
+* 단방향 데이터 바인딩 (UI의 데이터 변경을 감시하는 Watcher와
+자바스크립트 데이터의 변경을 감시하는 Watcher가 UI와 자바스크립트 데이터를 자동으로 동기화함,
+UI의 데이터 변경을 감시하는 Watcher와 자바스크립트 데이터의 변경을 감시하는 Watcher가 UI와 자바스크립트 데이터를 자동으로 동기화 
+시켜주는 방식, 사용자가 UI를 통해 자바스크립트의 데이터를 갱신할 때는, 이벤트를 통해 갱신)
+
+public
+node_modules
+src
+package.json
+
+index.html :
+가상 DOM을 위한 html 파일
+index.js에 대응되는 HTML 템플릿 파일
+index.js에 의해 read, rendering
+
+index.js :
+HTML 템플릿 및 JavaScript의 컴포넌트를 조합하여 rendering
+
+App.js : 
+컴포넌트를 정의하는 작업 파일
+실제로 화면에 표시되는 내용을 정의
+
+App.css : 
+App.js에 적용되는 stylesheet 파일
+
+React Component :
+react로 앱을 구현하는 최소 단위
+컴포넌트는 데이터(props)를 입력받아 view(state)상태에 따라 DOM 출력
+class형 컴포넌트 또는 함수형 컴포넌트로 정의
+property, state, lifecycle 함수가 필요한 구조의 컴포넌트는 class형으로 만들어서 사용해야 합니다.
+
+import React from 'react';
+function MyComponent(props) {
+    return <div> Hello, {props.name} </div>
+}
+export default MyComponent;
+
+##############################################################################################
+import React from 'react';
+
+class MyComponent extends React.Component {
+    constructor(props){ // 생성자 함수
+
+    }
+    componentDidMount(){
+
+    }
+    render(){
+        return <div> Hello, {this.props.name} </div>;
+    }
+}
+export default MyComponent;
+
+컴포넌트 lifecycle ###################################################################################
+
+[Mount - 컴포넌트가 처음 실행될 때]
+constructor(props)
+컴포넌트가 시작되면 우선 context, defaultProps와 state를 저장합니다.
+componentWillMount 메소드가 호출됨 - props나 state를 변경할 수 없음
+getDerivedStateFromProps() : 
+render로 컴포넌트를 DOM에 add on (Mount 완료)
+componentDidMount()가 호출 - props나 state를 변경할 수 있음
+
+[props가 update될때  (watcher가 udpate 이벤트를 감지)]
+shouldComponentUpdate() :
+return false를 하면 render을 취소 (성능 최적화)
+true일 경우에 renderd()를 한번 더 호출한다.
+render() - 업데이트가 완료
+componentDidUpdate() 가 호출
+
+[state가 update 될 때 (setState() 사용)]
+shouldComponentUpdate() : 
+render()
+componentDidUpdate() : render()함수가 return되는 html 형식의 코드를 화면에 그려준 후 실행된다.
+이벤트 처리, 초기화 작업을 위해 많이 활용되는 함수
+
+[Unmount - 컴포넌트 제거]
+componentWillUnmount()
+
+Error가 발생되면
+componentDidCatch()
+
+getDerivedStateFromProps() : 
+constructor() 다음으로 실행됨
+컴포넌트가 새로운 props가 변경되면 그에 따라 state도 변경처리 해줌
+
+constructor(props) : 
+생명주기 함수 중 가장 먼저 실행되며, 처음 한 번만 호출된다.
+component 내부에서 사용되는 변수(state)를 선언하고 부모 객체에서 전달받은 변수(props)를 초기화할 때 사용한다.
+super()함수를 첫번째 Line에서 호출해야 함
+#################################################################################################
+
+ES6 - 템플릿 문자열 지원
+백틱(`)으로 전체 문자열과 변수를 묶어 사용한다.
+변수는 ${변수명} 형태로 넣고
+코드상에서 줄바꿈을 하면 개행 문자 없이도 사용할 수 있다
+
+ES6 - 변수 선언 var, let, const
+var는 유연한 방식으로 변수를 재선언, 재할당할 수 있다.
+var 선언 변수는 사용 범위가 불확실해지거나 의도하지 않은 변숫값 변경이 발생할 수 있다
+let 선언 변수는 재선언을 허용하지 않습니다.
+const 선언 변수는 재선언을 허용하지 않고, 재할당을 허용하지 않는다
+
+ES6 - 전개 연산자 (변수 앞에 ...를 입력해 사용)
+배열이나 객체 변수를 좀 더 직관적이고 편리하게 합치거나 추출할 수 있게 도와주는 문법
+
+#####################################################################################################
+Express + MySQL

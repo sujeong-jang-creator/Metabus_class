@@ -1,23 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
+import TemplateEx  from './TemplateEx';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1> ReactJS를 공부해봅시다</h1>
+      <p> ReactJS 개발자를 찾고 있지만, 없습니다. </p>
+      <p> ReactJS 개발자 품귀현상~ 공부 열심히 합시다~</p>
+      <TemplateEx />
     </div>
   );
 }

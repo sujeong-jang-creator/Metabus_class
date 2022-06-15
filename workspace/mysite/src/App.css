@@ -1,3 +1,18 @@
+div {
+  background-color: rgb(169, 110, 224);
+  color: white;
+  padding: 40px;
+  font-family: 'Arial Black';
+  text-align: center;
+}
+
+h1 {
+  color: white;
+  background-color: rgb(255, 204, 0);
+  padding: 10px;
+  font-family: 'Arial Black';
+}
+/*
 .App {
   text-align: center;
 }
@@ -36,3 +51,4 @@
     transform: rotate(360deg);
   }
 }
+*/
